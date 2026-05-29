@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Geography Dash</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="top-bar">
+        <div class="brand-block">
+          <h1 class="logo">Geography Dash</h1>
+          <p class="tagline">Liveability-themed platform runs · authored routes · city rest plazas</p>
+        </div>
+        <div class="top-actions">
+          <button type="button" id="btn-citations" class="btn btn-ghost" aria-expanded="false">
+            Show sources &amp; citations
+          </button>
+        </div>
+      </header>
+
+      <main id="main">
+        <div id="canvas-wrap">
+          <canvas id="game" aria-label="Geography Dash game canvas"></canvas>
+        </div>
+
+        <div id="overlay" class="overlay" aria-live="polite">
+          <section id="screen-title" class="panel screen menu-shell menu-title">
+            <div class="menu-hero">
+              <p class="eyebrow">Campaign mode</p>
+              <h2>Run the liveability ladder</h2>
+              <p class="lede">
+                Eleven beats per city: ten ordered factors (what works first, what strains last) plus a finale.
+                Courses use stitched room layouts — not random noise — and scale with each city’s difficulty weight.
+              </p>
+            </div>
+            <ul class="feature-grid">
+              <li><strong>Authored routes</strong> — stepped rooms, climbs, and sprints tuned for jump distance.</li>
+              <li><strong>Rest plazas</strong> — one explorable hub level per stage (Hub button); plaques (E) explain that factor.</li>
+              <li><strong>Fairer physics</strong> — coyote time, short hop release, air control, fall cap, lookahead camera.</li>
+            </ul>
+            <p class="hint-controls" id="hint-controls"></p>
+            <div class="menu-footer-actions">
+              <button type="button" id="btn-start" class="btn btn-primary btn-lg">Browse cities</button>
+            </div>
+          </section>
+
+          <section id="screen-cities" class="panel screen menu-shell menu-cities hidden" hidden>
+            <header class="menu-section-head">
+              <h2>Campaign atlas</h2>
+              <p class="menu-sub">Pick a city to inspect stages, liveability band, and route intensity.</p>
+            </header>
+            <div id="city-cards" class="city-cards"></div>
+            <button type="button" class="btn btn-ghost back-btn" data-back="title">← Title</button>
+          </section>
+
+          <section id="screen-city" class="panel screen menu-shell menu-city hidden" hidden>
+            <div class="city-menu-grid">
+              <aside class="city-aside">
+                <div id="city-ribbon" class="city-ribbon" aria-hidden="true"></div>
+                <h2 id="city-title" class="city-title"></h2>
+                <p id="city-meta" class="city-meta"></p>
+                <p id="city-blurb" class="city-blurb"></p>
+                <dl class="city-stat-dl">
+                  <div><dt>Liveability band</dt><dd id="city-stat-live"></dd></div>
+                  <div><dt>Route intensity</dt><dd id="city-stat-diff"></dd></div>
+                  <div><dt>Campaign length</dt><dd>11 stages / city</dd></div>
+                </dl>
+                <div class="aside-actions">
+                  <label class="toggle toggle-block">
+                    <input type="checkbox" id="opt-checkpoints" checked />
+                    <span>Between-stage checkpoints (off = one death restarts the whole city run)</span>
+                  </label>
+                  <button type="button" id="btn-city-hub" class="btn btn-secondary btn-block">Enter rest hub plaza</button>
+                </div>
+                <button type="button" class="btn btn-ghost back-btn" data-back="cities">← All cities</button>
+              </aside>
+              <div class="city-main">
+                <header class="menu-section-head">
+                  <h3>Stage manifest</h3>
+                  <p class="menu-sub">Select a row to preview factor framing. Play launches the authored course.</p>
+                </header>
+                <div class="stage-split">
+                  <div class="stage-table-wrap">
+                    <table class="stage-table" aria-label="Stages for this city">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Factor</th>
+                          <th>Score</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody id="stage-table-body"></tbody>
+                    </table>
+                  </div>
+                  <aside id="stage-detail" class="stage-detail" aria-live="polite">
+                    <p class="stage-detail-placeholder" id="stage-detail-placeholder">Select a stage for strengths, weaknesses, and hazard theme.</p>
+                    <div id="stage-detail-content" class="stage-detail-content hidden" hidden>
+                      <p class="detail-kicker" id="detail-kicker"></p>
+                      <h4 id="detail-title"></h4>
+                      <p class="detail-score" id="detail-score"></p>
+                      <div class="detail-sw">
+                        <p><strong>Strengths</strong> <span id="detail-str"></span></p>
+                        <p><strong>Pressure</strong> <span id="detail-weak"></span></p>
+                      </div>
+                      <p class="detail-theme" id="detail-theme"></p>
+                      <div class="detail-actions">
+                        <button type="button" class="btn btn-primary" id="btn-detail-play">Play this stage</button>
+                        <button type="button" class="btn btn-secondary" id="btn-detail-hub">Hub only</button>
+                      </div>
+                    </div>
+                  </aside>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="screen-pause" class="panel screen hidden floating modal-floating" hidden>
+            <p class="modal-kicker">Suspended run</p>
+            <h2>Paused</h2>
+            <p class="modal-note">Take a breath — physics and hazards freeze until you resume.</p>
+            <div class="row-actions">
+              <button type="button" id="btn-resume" class="btn btn-primary">Resume</button>
+              <button type="button" id="btn-quit-stage" class="btn btn-ghost">Quit to stage list</button>
+            </div>
+          </section>
+
+          <section id="screen-win" class="panel screen hidden floating modal-floating" hidden>
+            <p class="modal-kicker">Sector clear</p>
+            <h2>Stage complete</h2>
+            <p id="win-summary" class="win-summary"></p>
+            <div class="row-actions">
+              <button type="button" id="btn-next-stage" class="btn btn-primary">Next stage</button>
+              <button type="button" id="btn-win-hub" class="btn btn-secondary">Rest hub</button>
+              <button type="button" id="btn-win-stages" class="btn btn-ghost">Stage list</button>
+            </div>
+          </section>
+
+          <div id="hud" class="hud hidden" hidden>
+            <span id="hud-city"></span>
+            <span id="hud-stage"></span>
+            <span class="hud-spacer"></span>
+            <span id="hud-check" class="hud-note"></span>
+            <button type="button" id="btn-pause" class="btn btn-tiny">Esc pause</button>
+          </div>
+
+          <aside id="hub-readout" class="hub-readout hidden" hidden aria-live="polite">
+            <h3 id="hub-readout-title"></h3>
+            <p id="hub-readout-body"></p>
+            <button type="button" id="hub-readout-close" class="btn btn-primary">Continue exploring</button>
+          </aside>
+        </div>
+      </main>
+
+      <footer id="citations-footer" class="citations-footer hidden" hidden>
+        <h3>Sources &amp; citations</h3>
+        <p class="cite-note">
+          Ratings and stage ordering in this prototype reflect the designer brief; consult the sources below for
+          methodological context.
+        </p>
+        <ul id="citations-list" class="citations-list"></ul>
+      </footer>
+    </div>
+
+    <div id="modal-hub" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="hub-heading" hidden>
+      <div class="modal-card">
+        <h2 id="hub-heading">Rest hub</h2>
+        <p id="hub-sub" class="meta"></p>
+        <p class="hub-help">Click an object to read how it connects to liveability and sustainability in this city.</p>
+        <ul id="hub-objects" class="hub-objects"></ul>
+        <article id="hub-detail" class="hub-detail hidden" hidden>
+          <h3 id="hub-detail-title"></h3>
+          <p id="hub-detail-body"></p>
+          <button type="button" id="hub-detail-close" class="btn btn-ghost">Close detail</button>
+        </article>
+        <button type="button" id="hub-close" class="btn btn-primary">Close hub</button>
+      </div>
+    </div>
+
+    <script>
+      // Optional spritesheet: add assets/spritesheet.png (+ optional JSON manifest), then uncomment:
+      // window.GD_SPRITE_ATLAS = { imageUrl: "assets/spritesheet.png", manifestUrl: "assets/spritesheet.json" };
+    </script>
+    <script src="js/data.js?v=12"></script>
+    <script src="js/deco/core.js?v=12"></script>
+    <script src="js/deco/primitives.js?v=12"></script>
+    <script src="js/deco/buildings.js?v=12"></script>
+    <script src="js/deco/stageThemes.js?v=12"></script>
+    <script src="js/deco/player.js?v=12"></script>
+    <script src="js/deco/hazards.js?v=12"></script>
+    <script src="js/deco/ambient.js?v=12"></script>
+    <script src="js/deco/props.js?v=12"></script>
+    <script src="js/deco/particles.js?v=12"></script>
+    <script src="js/deco/foreground.js?v=12"></script>
+    <script src="js/deco/citySkylines.js?v=12"></script>
+    <script src="js/deco/stageScatter.js?v=12"></script>
+    <script src="js/deco/platforms.js?v=12"></script>
+    <script src="js/deco/index.js?v=12"></script>
+    <script src="js/sprites.js?v=12"></script>
+    <script src="js/cityBackgrounds.js?v=12"></script>
+    <script src="js/hubLevels.js?v=12"></script>
+    <script src="js/levelTemplates.js?v=12"></script>
+    <script src="js/game.js?v=12"></script>
+    <script src="js/main.js?v=12"></script>
+  </body>
+</html>

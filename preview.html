@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Geography Dash — Visual Preview</title>
+  <style>
+    body { background: #111; margin: 0; padding: 24px; font-family: system-ui, sans-serif; color: #eee; }
+    h1  { color: #fff; margin: 0 0 4px; font-size: 22px; }
+    .sub { color: #888; font-size: 13px; margin-bottom: 28px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .card { background: #1a1a22; border-radius: 8px; overflow: hidden; }
+    .card h2 { font-size: 12px; color: #7ec8e3; margin: 0; padding: 8px 12px; border-bottom: 1px solid #2a2a3a; }
+    canvas { display: block; width: 100%; }
+    #status { color: #aaa; margin-bottom: 16px; font-size: 13px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>Geography Dash · Visual Preview</h1>
+  <p class="sub">Static single-frame render for each city / stage to verify the graphics pipeline.</p>
+  <p id="status">Loading scripts…</p>
+  <div id="grid" class="grid"></div>
+
+  <script src="js/data.js?v=2"></script>
+  <script src="js/deco/core.js?v=2"></script>
+  <script src="js/deco/primitives.js?v=2"></script>
+  <script src="js/deco/buildings.js?v=2"></script>
+  <script src="js/deco/stageThemes.js?v=2"></script>
+  <script src="js/deco/player.js?v=2"></script>
+  <script src="js/deco/hazards.js?v=2"></script>
+  <script src="js/deco/ambient.js?v=2"></script>
+  <script src="js/deco/props.js?v=2"></script>
+  <script src="js/deco/particles.js?v=2"></script>
+  <script src="js/deco/foreground.js?v=2"></script>
+  <script src="js/deco/citySkylines.js?v=2"></script>
+  <script src="js/deco/stageScatter.js?v=2"></script>
+  <script src="js/deco/platforms.js?v=2"></script>
+  <script src="js/deco/index.js?v=2"></script>
+  <script src="js/sprites.js?v=2"></script>
+  <script src="js/cityBackgrounds.js?v=2"></script>
+  <script src="js/hubLevels.js?v=2"></script>
+  <script src="js/levelTemplates.js?v=2"></script>
+  <script src="js/game.js?v=2"></script>
+
+  <script>
+    (function () {
+      const captures = [
+        { cityIdx: 0, stageIdx: 0,  label: 'Copenhagen  ·  Stage 1 — Environment (Wind Turbines)' },
+        { cityIdx: 0, stageIdx: 10, label: 'Copenhagen  ·  Stage 11 — Boss Tower Finale' },
+        { cityIdx: 1, stageIdx: 0,  label: 'Toronto  ·  Stage 1' },
+        { cityIdx: 1, stageIdx: 10, label: 'Toronto  ·  Stage 11 — Boss Sprawl Finale' },
+        { cityIdx: 2, stageIdx: 0,  label: 'Istanbul  ·  Stage 1' },
+        { cityIdx: 2, stageIdx: 5,  label: 'Istanbul  ·  Stage 6' },
+        { cityIdx: 3, stageIdx: 0,  label: 'Bangkok  ·  Stage 1' },
+        { cityIdx: 3, stageIdx: 10, label: 'Bangkok  ·  Stage 11 — Boss Storm Finale' },
+        { cityIdx: 4, stageIdx: 0,  label: 'New Delhi  ·  Stage 1' },
+        { cityIdx: 4, stageIdx: 10, label: 'New Delhi  ·  Stage 11 — Boss Volatile Finale' },
+        { cityIdx: 5, stageIdx: 0,  label: 'Lagos  ·  Stage 1' },
+        { cityIdx: 5, stageIdx: 10, label: 'Lagos  ·  Stage 11 — Boss Gridlock Finale' },
+      ];
+
+      const STATUS = document.getElementById('status');
+      const GRID   = document.getElementById('grid');
+
+      STATUS.textContent = 'Rendering frames…';
+
+      const W = 1280, H = 580;
+      const c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      c.style.cssText = 'position:fixed;left:-9999px;top:-9999px;width:' + W + 'px;height:' + H + 'px;';
+      document.body.appendChild(c);
+
+      // Slight delay so the body renders the canvas and clientWidth is real
+      setTimeout(function () {
+        let done = 0;
+        const ct = c.getContext('2d');
+
+        for (var i = 0; i < captures.length; i++) {
+          var cap = captures[i];
+          try {
+            var g = new window.GeographyDashGame(c);
+            g.beginStage(cap.cityIdx, cap.stageIdx, { checkpointsEnabled: true, resetSpawn: true });
+            g.time = 3.0; // advance so animated elements show
+
+            ct.clearRect(0, 0, W, H);
+            g.draw();
+
+            // Clone into a display canvas
+            var out = document.createElement('canvas');
+            out.width = W; out.height = H;
+            out.getContext('2d').drawImage(c, 0, 0);
+
+            var card = document.createElement('div');
+            card.className = 'card';
+            var title = document.createElement('h2');
+            title.textContent = cap.label;
+            card.appendChild(title);
+            card.appendChild(out);
+            GRID.appendChild(card);
+            done++;
+          } catch (e) {
+            var card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = '<h2>' + cap.label + ' — ERROR</h2><pre style="color:#f66;padding:8px;font-size:11px">' + e.message + '\n' + (e.stack || '').slice(0,400) + '</pre>';
+            GRID.appendChild(card);
+          }
+        }
+
+        document.body.removeChild(c);
+        STATUS.textContent = done + ' / ' + captures.length + ' frames rendered successfully. Open in a browser at http://localhost:3333/preview.html';
+      }, 80);
+    })();
+  </script>
+</body>
+</html>
