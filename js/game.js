@@ -303,7 +303,7 @@
     // (PLAYER_W=28) can never squeeze between them at ground level.
     {
       const floorStart = 480;
-      const floorEnd   = Math.max(floorStart + 200, goalX - 1380);
+      const floorEnd   = Math.max(floorStart + 200, goalX - 500);
       for (let sx = floorStart; sx < floorEnd; sx += 32) {
         hazards.push({ kind: "spike", x: sx, y: groundY - 14,
                        w: 32, h: 14, lethal: true });
