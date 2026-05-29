@@ -293,20 +293,32 @@
     const goalX = width - GOAL_PAD;
 
     // ── Spike floor ──────────────────────────────────────────────────────────
-    // Tiles the entire ground with lethal spikes from the end of the welcome
-    // zone (x=480) up to 420 px before the goal.  This forces the player onto
-    // the aerial platforms for the bulk of the run.  The 420 px safe corridor
-    // near the goal lets the player drop to the ground after the finale
-    // platform sequence and walk the last stretch to the flag — so even a
-    // failed top-platform jump doesn't brick the run.
-    // Spike tiles are 32 px wide, placed flush with no gap, so the player
-    // (PLAYER_W=28) can never squeeze between them at ground level.
+    // Tiles the ground with lethal spikes to force aerial platforming, but
+    // carves safe corridors around every elevated platform so that:
+    //   (a) the player is never trapped under a low "headhitter" platform
+    //       with spikes on both sides, and
+    //   (b) there is always a ground approach / landing zone before and after
+    //       each platform, preventing impossible long-jump setups.
+    // MARGIN px of safe ground is left on each side of every aerial platform.
+    // The final 800 px before the goal are always spike-free.
     {
       const floorStart = 480;
       const floorEnd   = Math.max(floorStart + 200, goalX - 800);
+      const MARGIN     = 64; // safe ground either side of each aerial platform
+
       for (let sx = floorStart; sx < floorEnd; sx += 32) {
-        hazards.push({ kind: "spike", x: sx, y: groundY - 14,
-                       w: 32, h: 14, lethal: true });
+        let safe = false;
+        for (let pi = 0; pi < aerials.length; pi++) {
+          const pl = aerials[pi];
+          if (sx + 32 > pl.x - MARGIN && sx < pl.x + pl.w + MARGIN) {
+            safe = true;
+            break;
+          }
+        }
+        if (!safe) {
+          hazards.push({ kind: "spike", x: sx, y: groundY - 14,
+                         w: 32, h: 14, lethal: true });
+        }
       }
     }
 
