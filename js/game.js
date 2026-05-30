@@ -128,12 +128,20 @@
       const x = pl.x;
       const hzRoll = rnd();
 
-      // Trailing spike: only on wider platforms and only at medium+ intensity
-      if (intensity > 0.25 && pw > 120 && rnd() < 0.28) {
+      // Gap to the immediate next/previous aerial platform (edge-to-edge, px).
+      // If the gap is already wide, edge spikes make the jump impossible — suppress them.
+      const _nextPl    = aerials[ai + 1];
+      const _prevPl    = aerials[ai - 1];
+      const gapAfter   = _nextPl ? Math.max(0, _nextPl.x - (pl.x + pl.w)) : 0;
+      const gapBefore  = _prevPl ? Math.max(0, pl.x - (_prevPl.x + _prevPl.w)) : 0;
+      const GAP_LIMIT  = 60; // px — suppress edge spikes once gap reaches this
+
+      // Trailing spike: forces player to jump earlier, eating into a tight gap
+      if (intensity > 0.25 && pw > 120 && rnd() < 0.28 && gapAfter < GAP_LIMIT) {
         pushSpike(x + pw - 24, platY - 14, 18, 14);
       }
-      // Leading spike: only at higher intensity
-      if (intensity > 0.5 && pw > 140 && rnd() < 0.18) {
+      // Leading spike: forces player to clear further, same problem from the other side
+      if (intensity > 0.5 && pw > 140 && rnd() < 0.18 && gapBefore < GAP_LIMIT) {
         pushSpike(x + 8, platY - 14, 16, 14);
       }
 
@@ -293,32 +301,16 @@
     const goalX = width - GOAL_PAD;
 
     // ── Spike floor ──────────────────────────────────────────────────────────
-    // Tiles the ground with lethal spikes to force aerial platforming, but
-    // carves safe corridors around every elevated platform so that:
-    //   (a) the player is never trapped under a low "headhitter" platform
-    //       with spikes on both sides, and
-    //   (b) there is always a ground approach / landing zone before and after
-    //       each platform, preventing impossible long-jump setups.
-    // MARGIN px of safe ground is left on each side of every aerial platform.
-    // The final 800 px before the goal are always spike-free.
+    // Tiles the ground with lethal spikes from the end of the welcome zone
+    // (x=480) to 800 px before the goal, forcing aerial platforming.
+    // Edge-spike suppression above (GAP_LIMIT) handles impossible jumps;
+    // the floor itself stays solid.
     {
       const floorStart = 480;
       const floorEnd   = Math.max(floorStart + 200, goalX - 800);
-      const MARGIN     = 64; // safe ground either side of each aerial platform
-
       for (let sx = floorStart; sx < floorEnd; sx += 32) {
-        let safe = false;
-        for (let pi = 0; pi < aerials.length; pi++) {
-          const pl = aerials[pi];
-          if (sx + 32 > pl.x - MARGIN && sx < pl.x + pl.w + MARGIN) {
-            safe = true;
-            break;
-          }
-        }
-        if (!safe) {
-          hazards.push({ kind: "spike", x: sx, y: groundY - 14,
-                         w: 32, h: 14, lethal: true });
-        }
+        hazards.push({ kind: "spike", x: sx, y: groundY - 14,
+                       w: 32, h: 14, lethal: true });
       }
     }
 
