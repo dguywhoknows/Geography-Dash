@@ -42,6 +42,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1.25rem;
+  position: relative;
 }
 
 .brand-block {
@@ -648,14 +649,91 @@ h3 {
   margin: 0 0 0.5rem;
 }
 
+/* ── APA citations ────────────────────────────────────────────────────────── */
 .citations-list {
   margin: 0;
-  padding-left: 1.1rem;
-  font-size: 0.85rem;
+  padding-left: 2.5rem;
+  font-size: 0.83rem;
+  line-height: 1.6;
+  list-style: none;
+}
+
+.citations-list li {
+  text-indent: -2.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.apa-cite {
+  font-family: inherit;
+  color: var(--text);
+}
+
+.apa-cite em {
+  font-style: italic;
 }
 
 .citations-list a {
   color: var(--accent);
+  word-break: break-all;
+}
+
+/* ── Player title badge ───────────────────────────────────────────────────── */
+.title-badge-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Grow to fill the space between brand and top-actions */
+  flex: 1;
+  min-width: 0;
+}
+
+.title-btn {
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 1rem;
+  text-transform: uppercase;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.title-btn:hover,
+.title-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+}
+
+.title-tooltip {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1b2030;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  color: var(--text);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  max-width: 340px;
+  padding: 0.65rem 0.85rem;
+  pointer-events: none;
+  white-space: normal;
+  width: max-content;
+  z-index: 200;
+}
+
+.title-tooltip-text {
+  margin: 0;
 }
 
 .modal {

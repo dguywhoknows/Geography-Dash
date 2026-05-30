@@ -339,6 +339,7 @@
 
     // Record completion
     markStageComplete(city.id, si);
+    updateTitleBadge();
 
     const el = document.getElementById("win-summary");
     el.textContent =
@@ -486,10 +487,65 @@
     const ul = document.getElementById("citations-list");
     G.citations.forEach(function (c) {
       const li = document.createElement("li");
+      // APA label may contain <em> for italicised title
+      const cite = document.createElement("span");
+      cite.className = "apa-cite";
+      cite.innerHTML = c.label + " ";
       const a = document.createElement("a");
       a.href = c.url; a.target = "_blank"; a.rel = "noopener noreferrer";
-      a.textContent = c.label;
-      li.appendChild(a); ul.appendChild(li);
+      a.textContent = c.url;
+      li.appendChild(cite);
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+  })();
+
+  // ── Player title badge ────────────────────────────────────────────────────
+  var PLAYER_TITLES = [
+    { count: 0, title: "Civilian",
+      desc: "OK, you may be a mere Civilian now, but you seem ready to take on the challenge that is Geography Dash! Ready to learn about the factors of a liveable community? Start whenever you're ready!" },
+    { count: 1, title: "Beginner",
+      desc: "Nice! You have made it through a city! They say every journey begins with one step, and that was an impressive one at that! You can now officially call yourself a City Liveability Beginner." },
+    { count: 2, title: "Student",
+      desc: "Well done! You have made it through two of the six cities and are well on your way to learning about what can make a community liveable! Keep up the good work! You are officially a City Liveability Student!" },
+    { count: 3, title: "Pro",
+      desc: "Wow! You have made it through three of the six cities and now have learned about factors of a liveable community! Keep up the good work! You are officially a City Liveability Pro!" },
+    { count: 4, title: "Savant",
+      desc: "Congratulations! You have gone through four of the six cities and have a great level of understanding of what makes a community safe, sustainable or liveable. You are officially a City Liveability Savant!" },
+    { count: 5, title: "Expert",
+      desc: "Impressive! You have made it through five of the six cities and have a significant understanding of factors of a liveable community. You are officially a City Liveability Expert!" },
+    { count: 6, title: "Master",
+      desc: "Incredible! You have gone through all the cities and learned about the strengths and weaknesses of their respective liveabilities. You are officially a City Liveability Master!" }
+  ];
+
+  function getPlayerTitleData() {
+    var completed = G.cities.filter(function (c) { return isCityComplete(c.id); }).length;
+    var best = PLAYER_TITLES[0];
+    for (var i = 0; i < PLAYER_TITLES.length; i++) {
+      if (completed >= PLAYER_TITLES[i].count) best = PLAYER_TITLES[i];
+    }
+    return best;
+  }
+
+  function updateTitleBadge() {
+    var t = getPlayerTitleData();
+    var btn = document.getElementById("title-badge-btn");
+    var tip = document.getElementById("title-tooltip-text");
+    if (btn) btn.textContent = t.title;
+    if (tip) tip.textContent = t.desc;
+  }
+
+  // Hover logic for the title tooltip
+  (function initTitleBadge() {
+    updateTitleBadge();
+    var wrap = document.getElementById("title-badge-wrap");
+    var tooltip = document.getElementById("title-tooltip");
+    if (!wrap || !tooltip) return;
+    wrap.addEventListener("mouseenter", function () {
+      tooltip.removeAttribute("hidden");
+    });
+    wrap.addEventListener("mouseleave", function () {
+      tooltip.setAttribute("hidden", "");
     });
   })();
 
