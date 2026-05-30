@@ -129,20 +129,24 @@
       const hzRoll = rnd();
 
       // Gap to the immediate next/previous aerial platform (edge-to-edge, px).
-      // If the gap is already wide, edge spikes make the jump impossible — suppress them.
+      // Suppress edge spikes entirely when the gap is already marginal.
       const _nextPl    = aerials[ai + 1];
       const _prevPl    = aerials[ai - 1];
       const gapAfter   = _nextPl ? Math.max(0, _nextPl.x - (pl.x + pl.w)) : 0;
       const gapBefore  = _prevPl ? Math.max(0, pl.x - (_prevPl.x + _prevPl.w)) : 0;
-      const GAP_LIMIT  = 60; // px — suppress edge spikes once gap reaches this
+      const GAP_LIMIT  = 90; // px — suppress edge spikes once gap reaches this
 
-      // Trailing spike: forces player to jump earlier, eating into a tight gap
-      if (intensity > 0.25 && pw > 120 && rnd() < 0.28 && gapAfter < GAP_LIMIT) {
-        pushSpike(x + pw - 24, platY - 14, 18, 14);
+      // Trailing spike — kept well back from the right edge so the player always
+      // has clear platform to reach the jump-off point after passing the spike.
+      // Position: 60 px from right edge (was 24 px — only 6 px of clear edge).
+      if (intensity > 0.25 && pw > 130 && rnd() < 0.28 && gapAfter < GAP_LIMIT) {
+        pushSpike(x + pw - 60, platY - 14, 18, 14);
       }
-      // Leading spike: forces player to clear further, same problem from the other side
-      if (intensity > 0.5 && pw > 140 && rnd() < 0.18 && gapBefore < GAP_LIMIT) {
-        pushSpike(x + 8, platY - 14, 16, 14);
+      // Leading spike — kept well back from the left edge so the player has a
+      // clear landing zone when arriving from a jump.
+      // Position: 48 px from left edge (was 8 px — almost no landing room).
+      if (intensity > 0.5 && pw > 150 && rnd() < 0.18 && gapBefore < GAP_LIMIT) {
+        pushSpike(x + 48, platY - 14, 16, 14);
       }
 
       // ── Theme-specific hazards ──────────────────────────────────────────────
