@@ -128,40 +128,21 @@
       const x = pl.x;
       const hzRoll = rnd();
 
-      // ── Gap-aware safe zone ───────────────────────────────────────────────
-      // Measure edge-to-edge gaps to adjacent aerial platforms.
-      const _nextPl   = aerials[ai + 1];
-      const _prevPl   = aerials[ai - 1];
-      const gapAfter  = _nextPl ? Math.max(0, _nextPl.x - (pl.x + pl.w)) : 0;
-      const gapBefore = _prevPl ? Math.max(0, pl.x - (_prevPl.x + _prevPl.w)) : 0;
-      // GAP_LIMIT: if the inter-platform gap is >= this, the jump is already
-      // near physics max — don't place any spikes near that edge.
-      const GAP_LIMIT = 90;
+      // ── Fixed safe-edge zone ─────────────────────────────────────────────
+      // Keep SAFE_EDGE px clear on BOTH sides of every aerial platform.
+      // PLAYER_W = 28 px, so SAFE_EDGE = 55 leaves 27 px of clear space
+      // beyond the player width — enough to land on the left and jump from
+      // the right without any spike being in the way.
+      const SAFE_EDGE = 55;
 
-      // How many px to keep spike-free near each edge when gap is large.
-      // Right edge (safeR): player needs run-up space to reach jump-off point.
-      // Left edge (safeL): player needs landing room after the incoming jump.
-      const safeL = gapBefore >= GAP_LIMIT ? 52 : 8;
-      const safeR = gapAfter  >= GAP_LIMIT ? 68 : 8;
-
-      // platSpike: replaces pushSpike inside the aerial loop.
-      // Clamps the spike x into [x+safeL … x+pw-safeR-w] so no spike can
-      // appear in the forbidden edge zones. Silently skips if there is no room.
+      // platSpike is the ONLY way to put a spike on an aerial platform.
+      // Any position outside [x+SAFE_EDGE … x+pw-SAFE_EDGE-w] is silently skipped.
       function platSpike(sx, sy, sw, sh) {
-        const w   = sw || 22;
-        const lo  = x + safeL;
-        const hi  = x + pw - safeR - w;
-        if (hi < lo) return;                         // platform too narrow
+        const w  = sw || 22;
+        const lo = x + SAFE_EDGE;
+        const hi = x + pw - SAFE_EDGE - w;
+        if (hi < lo) return;   // platform too narrow for a spike (< ~132 px)
         pushSpike(Math.max(lo, Math.min(hi, sx)), sy, w, sh);
-      }
-
-      // Trailing spike — only when gap is small enough to be safe.
-      if (intensity > 0.25 && pw > 130 && rnd() < 0.28 && gapAfter < GAP_LIMIT) {
-        pushSpike(x + pw - 60, platY - 14, 18, 14);
-      }
-      // Leading spike — only when gap is small enough to be safe.
-      if (intensity > 0.5 && pw > 150 && rnd() < 0.18 && gapBefore < GAP_LIMIT) {
-        pushSpike(x + 48, platY - 14, 16, 14);
       }
 
       // ── Theme-specific hazards (all spikes via platSpike) ───────────────────
