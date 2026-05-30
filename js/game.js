@@ -128,28 +128,43 @@
       const x = pl.x;
       const hzRoll = rnd();
 
-      // Gap to the immediate next/previous aerial platform (edge-to-edge, px).
-      // Suppress edge spikes entirely when the gap is already marginal.
-      const _nextPl    = aerials[ai + 1];
-      const _prevPl    = aerials[ai - 1];
-      const gapAfter   = _nextPl ? Math.max(0, _nextPl.x - (pl.x + pl.w)) : 0;
-      const gapBefore  = _prevPl ? Math.max(0, pl.x - (_prevPl.x + _prevPl.w)) : 0;
-      const GAP_LIMIT  = 90; // px — suppress edge spikes once gap reaches this
+      // ── Gap-aware safe zone ───────────────────────────────────────────────
+      // Measure edge-to-edge gaps to adjacent aerial platforms.
+      const _nextPl   = aerials[ai + 1];
+      const _prevPl   = aerials[ai - 1];
+      const gapAfter  = _nextPl ? Math.max(0, _nextPl.x - (pl.x + pl.w)) : 0;
+      const gapBefore = _prevPl ? Math.max(0, pl.x - (_prevPl.x + _prevPl.w)) : 0;
+      // GAP_LIMIT: if the inter-platform gap is >= this, the jump is already
+      // near physics max — don't place any spikes near that edge.
+      const GAP_LIMIT = 90;
 
-      // Trailing spike — kept well back from the right edge so the player always
-      // has clear platform to reach the jump-off point after passing the spike.
-      // Position: 60 px from right edge (was 24 px — only 6 px of clear edge).
+      // How many px to keep spike-free near each edge when gap is large.
+      // Right edge (safeR): player needs run-up space to reach jump-off point.
+      // Left edge (safeL): player needs landing room after the incoming jump.
+      const safeL = gapBefore >= GAP_LIMIT ? 52 : 8;
+      const safeR = gapAfter  >= GAP_LIMIT ? 68 : 8;
+
+      // platSpike: replaces pushSpike inside the aerial loop.
+      // Clamps the spike x into [x+safeL … x+pw-safeR-w] so no spike can
+      // appear in the forbidden edge zones. Silently skips if there is no room.
+      function platSpike(sx, sy, sw, sh) {
+        const w   = sw || 22;
+        const lo  = x + safeL;
+        const hi  = x + pw - safeR - w;
+        if (hi < lo) return;                         // platform too narrow
+        pushSpike(Math.max(lo, Math.min(hi, sx)), sy, w, sh);
+      }
+
+      // Trailing spike — only when gap is small enough to be safe.
       if (intensity > 0.25 && pw > 130 && rnd() < 0.28 && gapAfter < GAP_LIMIT) {
         pushSpike(x + pw - 60, platY - 14, 18, 14);
       }
-      // Leading spike — kept well back from the left edge so the player has a
-      // clear landing zone when arriving from a jump.
-      // Position: 48 px from left edge (was 8 px — almost no landing room).
+      // Leading spike — only when gap is small enough to be safe.
       if (intensity > 0.5 && pw > 150 && rnd() < 0.18 && gapBefore < GAP_LIMIT) {
         pushSpike(x + 48, platY - 14, 16, 14);
       }
 
-      // ── Theme-specific hazards ──────────────────────────────────────────────
+      // ── Theme-specific hazards (all spikes via platSpike) ───────────────────
       if ((theme === "car_swarm" || theme === "mobility" || theme === "commute_pulse" || theme === "work") && hzRoll < 0.55) {
         const spd = (1.8 + intensity * 3.8) * (rnd() < 0.5 ? -1 : 1);
         pushCar(x + rnd() * Math.max(8, pw - 40), platY - 26, 52, 26, spd);
@@ -160,12 +175,12 @@
             y: platY - 55 - rnd() * 30, w: 64 + rnd() * 30, h: 32,
             vx: 0.4 + rnd() * 0.9, drift: rnd() * 0.018, lethal: true });
         } else {
-          pushSpike(x + pw * 0.4, platY - 14, 22, 14);
+          platSpike(x + pw * 0.4, platY - 14, 22, 14);
         }
 
       } else if ((theme === "bike_lane" || theme === "safety") && hzRoll < 0.42) {
-        pushSpike(x + 16 + rnd() * Math.max(0, pw - 48), platY - 14, 26, 14);
-        if (intensity > 0.4 && rnd() < 0.3) pushSpike(x + rnd() * pw * 0.4, platY - 14, 18, 14);
+        platSpike(x + 16 + rnd() * Math.max(0, pw - 48), platY - 14, 26, 14);
+        if (intensity > 0.4 && rnd() < 0.3) platSpike(x + rnd() * pw * 0.4, platY - 14, 18, 14);
 
       } else if ((theme === "quake_crack" || theme === "housing") && hzRoll < 0.45) {
         if (theme === "housing" && movingHzOk) {
@@ -173,9 +188,9 @@
             y: platY - 34, w: 38, h: 18,
             vx: (rnd() < 0.5 ? -1 : 1) * (0.9 + intensity * 1.8), lethal: true });
         } else {
-          pushSpike(x + rnd() * Math.max(0, pw - 18), platY - 12, 22, 14);
+          platSpike(x + rnd() * Math.max(0, pw - 18), platY - 12, 22, 14);
         }
-        if (intensity > 0.45 && rnd() < 0.28) pushSpike(x + pw * 0.6, platY - 12, 16, 12);
+        if (intensity > 0.45 && rnd() < 0.28) platSpike(x + pw * 0.6, platY - 12, 16, 12);
 
       } else if (theme === "flood_zone" && hzRoll < 0.4) {
         hazards.push({ kind: "water", x: x + rnd() * Math.max(8, pw - 44),
@@ -195,7 +210,7 @@
             amp: 35 + rnd() * (theme === "patrol_hard" ? 65 : 40),
             speed: 0.022 + intensity * 0.028, lethal: true });
         } else {
-          pushSpike(x + pw * 0.5 - 11, platY - 14, 22, 14);
+          platSpike(x + pw * 0.5 - 11, platY - 14, 22, 14);
         }
 
       } else if ((theme === "pulse_zone" || theme === "institution_gate" || theme === "health" || theme === "sector") && hzRoll < 0.42) {
@@ -208,7 +223,7 @@
             y: platY - 90 - rnd() * 28, w: 22, h: 26,
             vy: 1.0 + intensity * 1.8, lethal: true });
         } else {
-          pushSpike(x + pw * 0.45 - 10, platY - 14, 20, 14);
+          platSpike(x + pw * 0.45 - 10, platY - 14, 20, 14);
         }
 
       } else if ((theme === "tax_slider" || theme === "income") && hzRoll < 0.45) {
@@ -217,7 +232,7 @@
             y: platY - 34, w: 34, h: 16,
             vx: (rnd() < 0.5 ? -1 : 1) * (0.8 + intensity * 2.0), lethal: true });
         }
-        if (intensity > 0.45 && rnd() < 0.3) pushSpike(x + rnd() * pw * 0.4, platY - 14, 18, 14);
+        if (intensity > 0.45 && rnd() < 0.3) platSpike(x + rnd() * pw * 0.4, platY - 14, 18, 14);
 
       } else if ((theme === "book_stack" || theme === "learning") && hzRoll < 0.42) {
         if (movingHzOk) {
@@ -225,9 +240,9 @@
             y: platY - 120 - rnd() * 30, w: 26, h: 34,
             vy: 1.2 + intensity * 1.8, lethal: true });
         } else {
-          pushSpike(x + rnd() * Math.max(0, pw - 22), platY - 15, 22, 14);
+          platSpike(x + rnd() * Math.max(0, pw - 22), platY - 15, 22, 14);
         }
-        if (intensity > 0.55 && rnd() < 0.28) pushSpike(x + 10, platY - 15, 16, 14);
+        if (intensity > 0.55 && rnd() < 0.28) platSpike(x + pw * 0.3, platY - 15, 16, 14);
 
       } else if ((theme === "stage_hazard" || theme === "arts") && hzRoll < 0.4) {
         if (movingHzOk) {
@@ -235,7 +250,7 @@
             y: platY - 95 - rnd() * 35, w: 22, h: 28,
             vy: 1.2 + intensity * 2.0, lethal: true });
         }
-        if (intensity > 0.45 && rnd() < 0.32) pushSpike(x + rnd() * pw, platY - 14, 20, 14);
+        if (intensity > 0.45 && rnd() < 0.32) platSpike(x + pw * 0.3 + rnd() * pw * 0.4, platY - 14, 20, 14);
 
       } else if ((theme === "wind_turbine" || theme === "env") && hzRoll < 0.4) {
         if (intensity > 0.3) {
@@ -244,7 +259,7 @@
             spin: 0.025 + intensity * 0.04,
             ang: rnd() * Math.PI * 2, lethal: true });
         } else {
-          pushSpike(x + pw * 0.4, platY - 14, 20, 14);
+          platSpike(x + pw * 0.4, platY - 14, 20, 14);
         }
 
       } else if (theme === "boss_tower" || theme === "boss_sprawl") {
@@ -264,7 +279,7 @@
         }
 
       } else if (hzRoll < 0.50) {
-        pushSpike(x + rnd() * Math.max(0, pw - 18), platY - 12, 20, 14);
+        platSpike(x + pw * 0.2 + rnd() * pw * 0.6, platY - 12, 20, 14);
         if (intensity > 0.5 && rnd() < 0.28 && theme !== "patrol_soft" && movingHzOk) {
           hazards.push({ kind: "block", x: x + rnd() * Math.max(0, pw - 36),
             y: platY - 32, w: 34, h: 15,
