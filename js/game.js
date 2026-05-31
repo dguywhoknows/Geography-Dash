@@ -145,6 +145,35 @@
         pushSpike(Math.max(lo, Math.min(hi, sx)), sy, w, sh);
       }
 
+      // platWater: same safe-edge logic for water hazards on aerial platforms.
+      // Water is wider (40-64 px) so the minimum passable platform is ~150 px.
+      function platWater(sx, sy, sw, sh) {
+        const w  = sw || 40;
+        const lo = x + SAFE_EDGE;
+        const hi = x + pw - SAFE_EDGE - w;
+        if (hi < lo) return;   // platform too narrow for water
+        hazards.push({ kind: "water",
+          x: Math.max(lo, Math.min(hi, sx)),
+          y: sy, w: w, h: sh || 12,
+          phase: rnd() * Math.PI * 2, lethal: true });
+      }
+
+      // hasHeadhitter: true when any platform with x-overlap sits close enough
+      // above this aerial platform that the player cannot jump high enough to
+      // clear a surface hazard (water height ~12 px; needs ~40 px of upward
+      // clearance, so we use a 110 px ceiling to include the player height and
+      // a safety margin).
+      // Coordinate system: y increases downward; opBottom = op.y + op.h is the
+      // lowest point of the overhead platform; clearance = platY − opBottom.
+      const hasHeadhitter = platforms.some(function (op) {
+        if (op === pl) return false;
+        const opBottom = op.y + op.h;
+        if (opBottom >= platY) return false;          // not above us
+        const clearance = platY - opBottom;
+        if (clearance > 110) return false;            // plenty of room to jump
+        return op.x < x + pw && op.x + op.w > x;    // x-overlap
+      });
+
       // ── Theme-specific hazards (all spikes via platSpike) ───────────────────
       if ((theme === "car_swarm" || theme === "mobility" || theme === "commute_pulse" || theme === "work") && hzRoll < 0.55) {
         const spd = (1.8 + intensity * 3.8) * (rnd() < 0.5 ? -1 : 1);
@@ -174,12 +203,11 @@
         if (intensity > 0.45 && rnd() < 0.28) platSpike(x + pw * 0.6, platY - 12, 16, 12);
 
       } else if (theme === "flood_zone" && hzRoll < 0.4) {
-        hazards.push({ kind: "water", x: x + rnd() * Math.max(8, pw - 44),
-          y: platY - 8, w: 40 + rnd() * 24, h: 12,
-          phase: rnd() * Math.PI * 2, lethal: true });
-        if (intensity > 0.5 && rnd() < 0.3) {
-          hazards.push({ kind: "water", x: x + rnd() * Math.max(0, pw - 30),
-            y: groundY - 10, w: 36 + rnd() * 24, h: 12, lethal: true });
+        // Only place water if the player has enough overhead clearance to jump
+        // over it; also keep it within the safe-edge zone on both sides.
+        if (!hasHeadhitter) {
+          platWater(x + SAFE_EDGE + rnd() * Math.max(0, pw - SAFE_EDGE * 2 - 44),
+            platY - 8, 40 + rnd() * 24, 12);
         }
 
       } else if ((theme === "patrol_hard" || theme === "patrol_soft") && hzRoll < 0.44) {
