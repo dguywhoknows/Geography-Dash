@@ -1,5 +1,5 @@
-/**
- * Geography Dash decoration engine — public API.
+﻿/**
+ * Geography Dash decoration engine - public API.
  */
 (function () {
   "use strict";

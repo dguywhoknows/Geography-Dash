@@ -1,5 +1,5 @@
-/**
- * Ambient particles — pollen, drizzle, embers, fireflies (city-specific).
+﻿/**
+ * Ambient particles - pollen, drizzle, embers, fireflies (city-specific).
  */
 (function () {
   "use strict";

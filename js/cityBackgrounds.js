@@ -1,5 +1,5 @@
-/**
- * City backdrop entry — delegates to GD_DECO skyline engine when loaded.
+﻿/**
+ * City backdrop entry - delegates to GD_DECO skyline engine when loaded.
  */
 (function () {
   "use strict";

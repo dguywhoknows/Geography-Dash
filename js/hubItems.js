@@ -1,5 +1,5 @@
-/**
- * Geography Dash — Hub collectible items for every stage in every city.
+﻿/**
+ * Geography Dash - Hub collectible items for every stage in every city.
  * 4 items per stage: 2 good (strengths), 2 bad (pressures).
  * Sources: EIU Liveability 2024, OECD, WHO, IEA, World Bank, Numbeo, city gov reports.
  */
@@ -9,7 +9,7 @@ const HUB_ITEMS = {
   // COPENHAGEN  (difficulty 0.28)
   // ─────────────────────────────────────────────
   copenhagen: [
-    // Stage 1 — Environment 5/5
+    // Stage 1 - Environment 5/5
     [
       {
         kind: "turbine",
@@ -32,17 +32,17 @@ const HUB_ITEMS = {
       {
         kind: "smog",
         title: "Consumption Footprint",
-        body: "Despite clean local energy, Danes' per-capita material footprint exceeds 20 tonnes per year (OECD 2023), driven by imports and high consumption. The city's Scope 3 emissions — goods made abroad — remain largely unaccounted in official totals.",
+        body: "Despite clean local energy, Danes' per-capita material footprint exceeds 20 tonnes per year (OECD 2023), driven by imports and high consumption. The city's Scope 3 emissions - goods made abroad - remain largely unaccounted in official totals.",
         valence: "bad",
       },
     ],
 
-    // Stage 2 — Getting Around 5/5
+    // Stage 2 - Getting Around 5/5
     [
       {
         kind: "bike",
         title: "62% Commute by Bike",
-        body: "In 2022, 62% of Copenhagen residents cycled to work or study every day — even in winter. The city maintains 390 km of protected cycle tracks and plans a further 60 km of cycle superhighways by 2030.",
+        body: "In 2022, 62% of Copenhagen residents cycled to work or study every day - even in winter. The city maintains 390 km of protected cycle tracks and plans a further 60 km of cycle superhighways by 2030.",
         valence: "good",
       },
       {
@@ -65,18 +65,18 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 3 — Safety 5/5
+    // Stage 3 - Safety 5/5
     [
       {
         kind: "flag",
         title: "Top-5 Safest City",
-        body: "The Economist's Safe Cities Index 2021 ranked Copenhagen 3rd globally. The city recorded just 1.4 homicides per 100,000 residents in 2022, compared with a Western European average of about 1.1 — near the continent's lowest.",
+        body: "The Economist's Safe Cities Index 2021 ranked Copenhagen 3rd globally. The city recorded just 1.4 homicides per 100,000 residents in 2022, compared with a Western European average of about 1.1 - near the continent's lowest.",
         valence: "good",
       },
       {
         kind: "vote",
         title: "Police Trust at 87%",
-        body: "A 2023 Statistics Denmark survey found 87% of Copenhageners trust the police — one of the highest rates in the EU. Community policing programs in mixed-income neighbourhoods like Nørrebro have maintained that trust through dialogue rather than enforcement.",
+        body: "A 2023 Statistics Denmark survey found 87% of Copenhageners trust the police - one of the highest rates in the EU. Community policing programs in mixed-income neighbourhoods like Nørrebro have maintained that trust through dialogue rather than enforcement.",
         valence: "good",
       },
       {
@@ -88,12 +88,12 @@ const HUB_ITEMS = {
       {
         kind: "flag",
         title: "Gang Territory Tensions",
-        body: "Though rare, gang conflicts periodically flare in outer districts like Tingbjerg. In 2020 the government designated several housing estates 'ghetto areas' under law — a policy criticised by residents and human-rights groups as discriminatory.",
+        body: "Though rare, gang conflicts periodically flare in outer districts like Tingbjerg. In 2020 the government designated several housing estates 'ghetto areas' under law - a policy criticised by residents and human-rights groups as discriminatory.",
         valence: "bad",
       },
     ],
 
-    // Stage 4 — Health 5/5
+    // Stage 4 - Health 5/5
     [
       {
         kind: "hospital",
@@ -110,7 +110,7 @@ const HUB_ITEMS = {
       {
         kind: "hospital",
         title: "Specialist Wait Times",
-        body: "Despite strong primary care, Rigshospitalet and Herlev Hospital reported average outpatient specialist waits of 40–60 days for non-urgent referrals in 2023. Mental health services face the longest queues — up to 6 months for first psychiatric appointments.",
+        body: "Despite strong primary care, Rigshospitalet and Herlev Hospital reported average outpatient specialist waits of 40–60 days for non-urgent referrals in 2023. Mental health services face the longest queues - up to 6 months for first psychiatric appointments.",
         valence: "bad",
       },
       {
@@ -121,12 +121,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 5 — Civic Engagement 5/5
+    // Stage 5 - Civic Engagement 5/5
     [
       {
         kind: "vote",
         title: "84% Voter Turnout",
-        body: "Denmark's 2022 general election saw 84.2% turnout — among the world's highest for a voluntary voting system. Copenhagen's municipal elections regularly exceed 70%, reflecting deep public trust in local governance.",
+        body: "Denmark's 2022 general election saw 84.2% turnout - among the world's highest for a voluntary voting system. Copenhagen's municipal elections regularly exceed 70%, reflecting deep public trust in local governance.",
         valence: "good",
       },
       {
@@ -149,7 +149,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 6 — State of the Sector 5/5
+    // Stage 6 - State of the Sector 5/5
     [
       {
         kind: "flag",
@@ -177,12 +177,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 7 — Income and Wealth 5/5
+    // Stage 7 - Income and Wealth 5/5
     [
       {
         kind: "dollar",
         title: "Low Gini Coefficient",
-        body: "Denmark's Gini coefficient stood at 0.29 in 2023 (OECD), among the world's most equal income distributions. The bottom 20% of earners receive 9.5% of total income — roughly double the share seen in the United States.",
+        body: "Denmark's Gini coefficient stood at 0.29 in 2023 (OECD), among the world's most equal income distributions. The bottom 20% of earners receive 9.5% of total income - roughly double the share seen in the United States.",
         valence: "good",
       },
       {
@@ -205,7 +205,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 8 — Learning 5/5
+    // Stage 8 - Learning 5/5
     [
       {
         kind: "school",
@@ -222,7 +222,7 @@ const HUB_ITEMS = {
       {
         kind: "book",
         title: "Ethnic Learning Gap",
-        body: "Students with non-Western immigrant backgrounds score on average 77 PISA points lower in reading than Danish-origin peers (Statistics Denmark 2022) — a gap that persists even after controlling for socioeconomic status, signalling systemic school integration challenges.",
+        body: "Students with non-Western immigrant backgrounds score on average 77 PISA points lower in reading than Danish-origin peers (Statistics Denmark 2022) - a gap that persists even after controlling for socioeconomic status, signalling systemic school integration challenges.",
         valence: "bad",
       },
       {
@@ -233,7 +233,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 9 — Work 4/5
+    // Stage 9 - Work 4/5
     [
       {
         kind: "dollar",
@@ -250,7 +250,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Labour Costs Deter Firms",
-        body: "Total hourly labour costs in Denmark averaged €47.50 in 2023 (Eurostat) — the EU's 3rd highest. Some manufacturers and logistics companies have relocated operations to Germany or Eastern Europe, citing wage and employer-contribution costs.",
+        body: "Total hourly labour costs in Denmark averaged €47.50 in 2023 (Eurostat) - the EU's 3rd highest. Some manufacturers and logistics companies have relocated operations to Germany or Eastern Europe, citing wage and employer-contribution costs.",
         valence: "bad",
       },
       {
@@ -261,7 +261,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 10 — Arts, Culture & Recreation 4/5
+    // Stage 10 - Arts, Culture & Recreation 4/5
     [
       {
         kind: "temple",
@@ -289,7 +289,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 11 — Housing BOSS 3/5
+    // Stage 11 - Housing BOSS 3/5
     [
       {
         kind: "house",
@@ -300,7 +300,7 @@ const HUB_ITEMS = {
       {
         kind: "crane",
         title: "Social Housing at 20%",
-        body: "Roughly 20% of Copenhagen's housing is social ('almene boliger'), managed by non-profit housing associations. The waiting list system gives long-term residents priority, and rents are capped below market rates — a key affordability buffer.",
+        body: "Roughly 20% of Copenhagen's housing is social ('almene boliger'), managed by non-profit housing associations. The waiting list system gives long-term residents priority, and rents are capped below market rates - a key affordability buffer.",
         valence: "good",
       },
       {
@@ -322,12 +322,12 @@ const HUB_ITEMS = {
   // TORONTO  (difficulty 0.45)
   // ─────────────────────────────────────────────
   toronto: [
-    // Stage 1 — Arts, Culture & Recreation 5/5
+    // Stage 1 - Arts, Culture & Recreation 5/5
     [
       {
         kind: "temple",
         title: "Most Diverse City",
-        body: "Toronto is frequently cited as the world's most ethnically diverse city: over 51% of residents were born outside Canada (2021 Census). This produces one of earth's densest concentrations of cuisines, festivals, and cultural institutions — over 200 languages are spoken daily.",
+        body: "Toronto is frequently cited as the world's most ethnically diverse city: over 51% of residents were born outside Canada (2021 Census). This produces one of earth's densest concentrations of cuisines, festivals, and cultural institutions - over 200 languages are spoken daily.",
         valence: "good",
       },
       {
@@ -339,7 +339,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Live Music Venue Crisis",
-        body: "Toronto lost over 30 independent music venues between 2018 and 2023, as rising rents and post-pandemic debt forced closures. The 2023 Music Venue Task Force found average monthly rent for a 300-capacity venue exceeded CAD 25,000 — unworkable for most operators.",
+        body: "Toronto lost over 30 independent music venues between 2018 and 2023, as rising rents and post-pandemic debt forced closures. The 2023 Music Venue Task Force found average monthly rent for a 300-capacity venue exceeded CAD 25,000 - unworkable for most operators.",
         valence: "bad",
       },
       {
@@ -350,7 +350,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 2 — Learning 4/5
+    // Stage 2 - Learning 4/5
     [
       {
         kind: "school",
@@ -367,18 +367,18 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "University Tuition Frozen-Low",
-        body: "Ontario froze domestic undergraduate tuition at 2019 levels until 2024 — a boon for students but creating a funding gap: universities reported combined deficits of CAD 450 million in 2022–23, cutting library hours, sessional staff, and student services.",
+        body: "Ontario froze domestic undergraduate tuition at 2019 levels until 2024 - a boon for students but creating a funding gap: universities reported combined deficits of CAD 450 million in 2022–23, cutting library hours, sessional staff, and student services.",
         valence: "bad",
       },
       {
         kind: "school",
         title: "Deep School Inequality",
-        body: "Toronto's Education Quality and Accountability Office (EQAO) 2023 data shows Grade 6 math proficiency ranging from 90% in wealthy North York neighbourhoods to under 40% in Scarborough's priority schools — a direct reflection of household income and housing segregation.",
+        body: "Toronto's Education Quality and Accountability Office (EQAO) 2023 data shows Grade 6 math proficiency ranging from 90% in wealthy North York neighbourhoods to under 40% in Scarborough's priority schools - a direct reflection of household income and housing segregation.",
         valence: "bad",
       },
     ],
 
-    // Stage 3 — Work 4/5
+    // Stage 3 - Work 4/5
     [
       {
         kind: "factory",
@@ -389,7 +389,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Strong Minimum Wage",
-        body: "Ontario's general minimum wage rose to CAD 17.20/hour in October 2024 — one of Canada's highest provincial floors. The living wage in Toronto, independently calculated by the Ontario Living Wage Network, is CAD 23.15/hour (2024).",
+        body: "Ontario's general minimum wage rose to CAD 17.20/hour in October 2024 - one of Canada's highest provincial floors. The living wage in Toronto, independently calculated by the Ontario Living Wage Network, is CAD 23.15/hour (2024).",
         valence: "good",
       },
       {
@@ -401,29 +401,29 @@ const HUB_ITEMS = {
       {
         kind: "factory",
         title: "Credential Recognition Gap",
-        body: "A 2023 Ryerson City Building Institute report found 28% of Toronto immigrants with foreign professional credentials are working in jobs unrelated to their training — a 'brain waste' costing the Ontario economy an estimated CAD 13 billion annually in lost productivity.",
+        body: "A 2023 Ryerson City Building Institute report found 28% of Toronto immigrants with foreign professional credentials are working in jobs unrelated to their training - a 'brain waste' costing the Ontario economy an estimated CAD 13 billion annually in lost productivity.",
         valence: "bad",
       },
     ],
 
-    // Stage 4 — Civic Engagement 4/5
+    // Stage 4 - Civic Engagement 4/5
     [
       {
         kind: "vote",
         title: "Strong NGO Ecosystem",
-        body: "Toronto hosts over 5,000 registered charities and non-profits — one of North America's densest civic societies per capita (CRA 2023). Organisations like the Toronto Community Benefits Network successfully negotiated local-hire clauses into the Eglinton Crosstown LRT contract.",
+        body: "Toronto hosts over 5,000 registered charities and non-profits - one of North America's densest civic societies per capita (CRA 2023). Organisations like the Toronto Community Benefits Network successfully negotiated local-hire clauses into the Eglinton Crosstown LRT contract.",
         valence: "good",
       },
       {
         kind: "flag",
         title: "Diverse City Council",
-        body: "Following the 2022 municipal election, Toronto City Council became one of Canada's most diverse: 47% of councillors identify as women or non-binary, and 38% are racialized — up from 24% in 2018, better reflecting the city's population.",
+        body: "Following the 2022 municipal election, Toronto City Council became one of Canada's most diverse: 47% of councillors identify as women or non-binary, and 38% are racialized - up from 24% in 2018, better reflecting the city's population.",
         valence: "good",
       },
       {
         kind: "vote",
         title: "Low Mayoral Turnout",
-        body: "Toronto's 2023 mayoral by-election recorded only 29.5% turnout — the lowest for a Toronto mayoral race in the modern era. Chronic underfunding of civic education, long working hours, and poor ward accessibility contribute to disengagement.",
+        body: "Toronto's 2023 mayoral by-election recorded only 29.5% turnout - the lowest for a Toronto mayoral race in the modern era. Chronic underfunding of civic education, long working hours, and poor ward accessibility contribute to disengagement.",
         valence: "bad",
       },
       {
@@ -434,12 +434,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 5 — Health 4/5
+    // Stage 5 - Health 4/5
     [
       {
         kind: "hospital",
         title: "World-Class Hospital Network",
-        body: "Toronto's University Health Network (UHN) — including Toronto General, Toronto Western, and Princess Margaret — ranks among the top 10 hospital systems globally (Newsweek 2024). SickKids Hospital leads in paediatric oncology research, attracting patients from 100+ countries.",
+        body: "Toronto's University Health Network (UHN) - including Toronto General, Toronto Western, and Princess Margaret - ranks among the top 10 hospital systems globally (Newsweek 2024). SickKids Hospital leads in paediatric oncology research, attracting patients from 100+ countries.",
         valence: "good",
       },
       {
@@ -462,24 +462,24 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 6 — Safety 4/5
+    // Stage 6 - Safety 4/5
     [
       {
         kind: "flag",
         title: "Safer Than Peer Cities",
-        body: "Toronto's homicide rate was 1.8 per 100,000 in 2023 (Toronto Police), far below Chicago (18.3), New York (4.1), and Los Angeles (7.1). The Economist Safe Cities Index 2021 ranked Toronto 8th globally — the only North American city in the top 10.",
+        body: "Toronto's homicide rate was 1.8 per 100,000 in 2023 (Toronto Police), far below Chicago (18.3), New York (4.1), and Los Angeles (7.1). The Economist Safe Cities Index 2021 ranked Toronto 8th globally - the only North American city in the top 10.",
         valence: "good",
       },
       {
         kind: "hospital",
         title: "Community Safety Programs",
-        body: "Toronto's Situation Table model — now operating in 14 city divisions — brings police, social workers, and health providers together to rapidly intervene with high-risk individuals. A 2022 evaluation found it reduced acute crisis incidents by 65% among participants.",
+        body: "Toronto's Situation Table model - now operating in 14 city divisions - brings police, social workers, and health providers together to rapidly intervene with high-risk individuals. A 2022 evaluation found it reduced acute crisis incidents by 65% among participants.",
         valence: "good",
       },
       {
         kind: "car",
         title: "Auto Theft Epidemic",
-        body: "Toronto recorded 12,861 auto thefts in 2023 — a 25-year high, costing insurers over CAD 1 billion. Organized crime rings export stolen vehicles via Port of Montreal; Ontario's average auto insurance premium hit CAD 1,920/year, highest in Canada.",
+        body: "Toronto recorded 12,861 auto thefts in 2023 - a 25-year high, costing insurers over CAD 1 billion. Organized crime rings export stolen vehicles via Port of Montreal; Ontario's average auto insurance premium hit CAD 1,920/year, highest in Canada.",
         valence: "bad",
       },
       {
@@ -490,7 +490,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 7 — State of the Sector 4/5
+    // Stage 7 - State of the Sector 4/5
     [
       {
         kind: "flag",
@@ -507,7 +507,7 @@ const HUB_ITEMS = {
       {
         kind: "crane",
         title: "Transit Funding Gaps",
-        body: "The Eglinton Crosstown LRT — originally budgeted at CAD 5.3 billion — is expected to cost over CAD 12 billion by completion, delayed past 2024. Ontario Infrastructure Ontario attributed the overrun to contractor disputes and pandemic disruptions, but accountability has been widely criticised.",
+        body: "The Eglinton Crosstown LRT - originally budgeted at CAD 5.3 billion - is expected to cost over CAD 12 billion by completion, delayed past 2024. Ontario Infrastructure Ontario attributed the overrun to contractor disputes and pandemic disruptions, but accountability has been widely criticised.",
         valence: "bad",
       },
       {
@@ -518,7 +518,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 8 — Income and Wealth 4/5
+    // Stage 8 - Income and Wealth 4/5
     [
       {
         kind: "dollar",
@@ -529,29 +529,29 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Progressive Tax System",
-        body: "Canada's combined federal-provincial top marginal rate in Ontario reaches 53.5% — funding universal healthcare, EI, and CPP. Refundable tax credits (GST Credit, Canada Child Benefit) redistribute significantly to low-income families with children.",
+        body: "Canada's combined federal-provincial top marginal rate in Ontario reaches 53.5% - funding universal healthcare, EI, and CPP. Refundable tax credits (GST Credit, Canada Child Benefit) redistribute significantly to low-income families with children.",
         valence: "good",
       },
       {
         kind: "dollar",
         title: "Gini Rising Sharply",
-        body: "Toronto's after-tax Gini coefficient rose from 0.37 to 0.43 between 2000 and 2022 (Statistics Canada), driven by housing wealth concentration. The wealthiest 1% of Torontonians held 17% of total income in 2021 — the highest share of any Canadian metro.",
+        body: "Toronto's after-tax Gini coefficient rose from 0.37 to 0.43 between 2000 and 2022 (Statistics Canada), driven by housing wealth concentration. The wealthiest 1% of Torontonians held 17% of total income in 2021 - the highest share of any Canadian metro.",
         valence: "bad",
       },
       {
         kind: "house",
         title: "Poverty Rate Hits 19%",
-        body: "Using Statistics Canada's Market Basket Measure, 19.1% of Toronto residents lived in poverty in 2022 — above the national rate of 9.9%. Food bank use set a record in 2023: Daily Bread and North York Harvest together served 300,000 unique clients.",
+        body: "Using Statistics Canada's Market Basket Measure, 19.1% of Toronto residents lived in poverty in 2022 - above the national rate of 9.9%. Food bank use set a record in 2023: Daily Bread and North York Harvest together served 300,000 unique clients.",
         valence: "bad",
       },
     ],
 
-    // Stage 9 — Environment 3/5
+    // Stage 9 - Environment 3/5
     [
       {
         kind: "leaf",
         title: "Ravine System Protected",
-        body: "Toronto's 11,000+ hectares of ravine valley land — the largest urban ravine system in North America — are protected from development under the Ravine and Natural Feature Protection By-law (2017). They act as flood mitigation, carbon sinks, and biodiversity corridors.",
+        body: "Toronto's 11,000+ hectares of ravine valley land - the largest urban ravine system in North America - are protected from development under the Ravine and Natural Feature Protection By-law (2017). They act as flood mitigation, carbon sinks, and biodiversity corridors.",
         valence: "good",
       },
       {
@@ -574,12 +574,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 10 — Getting Around 3/5
+    // Stage 10 - Getting Around 3/5
     [
       {
         kind: "metro",
         title: "Eglinton LRT Expanding",
-        body: "The Eglinton Crosstown LRT — 19 km of mostly underground rail across midtown Toronto — will add 25 stations and is expected to carry 5,400 passengers per hour at peak once open. Combined with the Ontario Line, it represents CAD 28 billion in regional transit investment.",
+        body: "The Eglinton Crosstown LRT - 19 km of mostly underground rail across midtown Toronto - will add 25 stations and is expected to carry 5,400 passengers per hour at peak once open. Combined with the Ontario Line, it represents CAD 28 billion in regional transit investment.",
         valence: "good",
       },
       {
@@ -597,17 +597,17 @@ const HUB_ITEMS = {
       {
         kind: "metro",
         title: "TTC Reliability Crisis",
-        body: "The TTC reported 14,000+ subway delays in 2022, many caused by aging signal equipment, some more than 70 years old. A 2023 TTC capital plan identified CAD 33 billion in state-of-good-repair needs over 15 years — a backlog built over decades of underfunding.",
+        body: "The TTC reported 14,000+ subway delays in 2022, many caused by aging signal equipment, some more than 70 years old. A 2023 TTC capital plan identified CAD 33 billion in state-of-good-repair needs over 15 years - a backlog built over decades of underfunding.",
         valence: "bad",
       },
     ],
 
-    // Stage 11 — Housing BOSS 2/5
+    // Stage 11 - Housing BOSS 2/5
     [
       {
         kind: "house",
         title: "Condo Supply Growing",
-        body: "Toronto had over 92,000 condo units under construction in 2023 — the most of any city in North America (Urbanation). This supply pipeline, concentrated along transit corridors, represents the largest single-city residential construction effort in Canadian history.",
+        body: "Toronto had over 92,000 condo units under construction in 2023 - the most of any city in North America (Urbanation). This supply pipeline, concentrated along transit corridors, represents the largest single-city residential construction effort in Canadian history.",
         valence: "good",
       },
       {
@@ -619,7 +619,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Benchmark Price: CAD 1.1M",
-        body: "The Toronto Regional Real Estate Board benchmark home price hit CAD 1,106,000 in early 2024 — roughly 12 times the median household income. Only about 42% of Toronto households own their home, down from 53% in 2011, as ownership has become inaccessible for most.",
+        body: "The Toronto Regional Real Estate Board benchmark home price hit CAD 1,106,000 in early 2024 - roughly 12 times the median household income. Only about 42% of Toronto households own their home, down from 53% in 2011, as ownership has become inaccessible for most.",
         valence: "bad",
       },
       {
@@ -635,7 +635,7 @@ const HUB_ITEMS = {
   // ISTANBUL  (difficulty 0.62)
   // ─────────────────────────────────────────────
   istanbul: [
-    // Stage 1 — Arts, Culture & Recreation 5/5
+    // Stage 1 - Arts, Culture & Recreation 5/5
     [
       {
         kind: "temple",
@@ -663,12 +663,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 2 — Civic Engagement 3/5
+    // Stage 2 - Civic Engagement 3/5
     [
       {
         kind: "vote",
         title: "High Electoral Turnout",
-        body: "Turkey's 2023 presidential and parliamentary elections saw 87% voter turnout — among the highest in the world for a competitive election. Istanbul's municipal services have improved under Mayor Ekrem İmamoğlu (elected 2019), boosting local civic confidence.",
+        body: "Turkey's 2023 presidential and parliamentary elections saw 87% voter turnout - among the highest in the world for a competitive election. Istanbul's municipal services have improved under Mayor Ekrem İmamoğlu (elected 2019), boosting local civic confidence.",
         valence: "good",
       },
       {
@@ -691,12 +691,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 3 — Learning 3/5
+    // Stage 3 - Learning 3/5
     [
       {
         kind: "school",
         title: "Istanbul Technical University",
-        body: "Istanbul Technical University (ITU), founded 1773, is Turkey's leading STEM institution and ranks in the top 500 globally (QS 2024). Istanbul hosts 50+ universities enrolling over 600,000 students — making it one of Europe's largest university cities by student population.",
+        body: "Istanbul Technical University (ITU), founded 1773, is Turkey's leading STEM institution and ranks in the top 500 globally (QS 2024). Istanbul hosts 50+ universities enrolling over 600,000 students - making it one of Europe's largest university cities by student population.",
         valence: "good",
       },
       {
@@ -719,7 +719,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 4 — Getting Around 3/5
+    // Stage 4 - Getting Around 3/5
     [
       {
         kind: "ferry",
@@ -730,13 +730,13 @@ const HUB_ITEMS = {
       {
         kind: "metro",
         title: "Metro Network Expanding",
-        body: "Istanbul's metro system reached 246 km of track on 13 lines in 2024 — a near-doubling since 2013. By 2030 the city aims for 400 km, which would place it among the world's 10 longest metro networks, connecting both the European and Asian sides.",
+        body: "Istanbul's metro system reached 246 km of track on 13 lines in 2024 - a near-doubling since 2013. By 2030 the city aims for 400 km, which would place it among the world's 10 longest metro networks, connecting both the European and Asian sides.",
         valence: "good",
       },
       {
         kind: "car",
         title: "15-Million-Person Gridlock",
-        body: "With 15+ million residents and over 5 million registered vehicles, Istanbul's roads are among the world's most congested. TomTom's 2023 Traffic Index ranked Istanbul 2nd globally: drivers lost an average of 142 hours per year to traffic — about 6 full days.",
+        body: "With 15+ million residents and over 5 million registered vehicles, Istanbul's roads are among the world's most congested. TomTom's 2023 Traffic Index ranked Istanbul 2nd globally: drivers lost an average of 142 hours per year to traffic - about 6 full days.",
         valence: "bad",
       },
       {
@@ -747,12 +747,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 5 — Housing 3/5
+    // Stage 5 - Housing 3/5
     [
       {
         kind: "house",
         title: "Relatively Affordable vs West",
-        body: "Istanbul apartment prices averaged TRY 12 million (~USD 380,000 at 2024 rates) in 2024 — less than half London or Copenhagen prices in USD terms. A large rental market, particularly in inner-city Beyoğlu and Kadıköy, offers furnished apartments from ~USD 600/month.",
+        body: "Istanbul apartment prices averaged TRY 12 million (~USD 380,000 at 2024 rates) in 2024 - less than half London or Copenhagen prices in USD terms. A large rental market, particularly in inner-city Beyoğlu and Kadıköy, offers furnished apartments from ~USD 600/month.",
         valence: "good",
       },
       {
@@ -764,7 +764,7 @@ const HUB_ITEMS = {
       {
         kind: "house",
         title: "Inflation Erodes Affordability",
-        body: "Turkish CPI inflation peaked at 85% in October 2022 and remained above 60% in 2024. Istanbul rents rose 150–200% in nominal terms between 2021 and 2024, while wage growth lagged significantly — causing acute housing affordability stress even where prices were once modest.",
+        body: "Turkish CPI inflation peaked at 85% in October 2022 and remained above 60% in 2024. Istanbul rents rose 150–200% in nominal terms between 2021 and 2024, while wage growth lagged significantly - causing acute housing affordability stress even where prices were once modest.",
         valence: "bad",
       },
       {
@@ -775,7 +775,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 6 — Work 3/5
+    // Stage 6 - Work 3/5
     [
       {
         kind: "factory",
@@ -798,12 +798,12 @@ const HUB_ITEMS = {
       {
         kind: "factory",
         title: "Informal Labour: 30%",
-        body: "Approximately 30% of Istanbul's workforce is employed in the informal sector — unregistered, without social security, and outside labour protections (TurkStat 2023). This includes many Syrian refugees (600,000+ in Istanbul) who lack work permits.",
+        body: "Approximately 30% of Istanbul's workforce is employed in the informal sector - unregistered, without social security, and outside labour protections (TurkStat 2023). This includes many Syrian refugees (600,000+ in Istanbul) who lack work permits.",
         valence: "bad",
       },
     ],
 
-    // Stage 7 — Health 3/5
+    // Stage 7 - Health 3/5
     [
       {
         kind: "hospital",
@@ -814,29 +814,29 @@ const HUB_ITEMS = {
       {
         kind: "hospital",
         title: "City Hospitals Mega-Project",
-        body: "Turkey built 9 'şehir hastaneleri' (city hospitals) between 2017 and 2023, including the 2,682-bed Başakşehir Çam ve Sakura Hospital — the world's largest hospital complex. These facilities dramatically expanded Istanbul's public hospital capacity.",
+        body: "Turkey built 9 'şehir hastaneleri' (city hospitals) between 2017 and 2023, including the 2,682-bed Başakşehir Çam ve Sakura Hospital - the world's largest hospital complex. These facilities dramatically expanded Istanbul's public hospital capacity.",
         valence: "good",
       },
       {
         kind: "dollar",
         title: "Healthcare Two-Tier System",
-        body: "Private hospitals charge 5–15x more than SGK (social security) reimbursement rates, meaning uninsured or informally employed patients — a large share of the workforce — face catastrophic out-of-pocket costs. Only 68% of Istanbul residents hold active SGK coverage (Ministry of Health 2022).",
+        body: "Private hospitals charge 5–15x more than SGK (social security) reimbursement rates, meaning uninsured or informally employed patients - a large share of the workforce - face catastrophic out-of-pocket costs. Only 68% of Istanbul residents hold active SGK coverage (Ministry of Health 2022).",
         valence: "bad",
       },
       {
         kind: "smog",
         title: "Air Pollution & Lung Disease",
-        body: "Istanbul's annual PM2.5 average reached 22 μg/m³ in 2022 (WHO database) — more than four times the WHO guideline of 5 μg/m³. Respiratory disease is the 3rd leading cause of hospital admissions in the city, disproportionately affecting children in high-traffic districts.",
+        body: "Istanbul's annual PM2.5 average reached 22 μg/m³ in 2022 (WHO database) - more than four times the WHO guideline of 5 μg/m³. Respiratory disease is the 3rd leading cause of hospital admissions in the city, disproportionately affecting children in high-traffic districts.",
         valence: "bad",
       },
     ],
 
-    // Stage 8 — Safety 3/5
+    // Stage 8 - Safety 3/5
     [
       {
         kind: "flag",
         title: "Low Homicide Rate",
-        body: "Turkey's homicide rate was 2.6 per 100,000 in 2022 — well below the global average of 6.0 (UNODC). Istanbul, despite its size, recorded fewer than 200 homicides in 2022, a rate comparable to major Western European cities.",
+        body: "Turkey's homicide rate was 2.6 per 100,000 in 2022 - well below the global average of 6.0 (UNODC). Istanbul, despite its size, recorded fewer than 200 homicides in 2022, a rate comparable to major Western European cities.",
         valence: "good",
       },
       {
@@ -859,12 +859,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 9 — State of the Sector 3/5
+    // Stage 9 - State of the Sector 3/5
     [
       {
         kind: "temple",
         title: "G20 Economy & NATO Member",
-        body: "Turkey is a G20 economy and NATO member, giving Istanbul global diplomatic and commercial significance. The city hosts 105 consulates-general — more than any other city outside capitals — underpinning its role as a regional business hub.",
+        body: "Turkey is a G20 economy and NATO member, giving Istanbul global diplomatic and commercial significance. The city hosts 105 consulates-general - more than any other city outside capitals - underpinning its role as a regional business hub.",
         valence: "good",
       },
       {
@@ -887,7 +887,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 10 — Environment 2/5
+    // Stage 10 - Environment 2/5
     [
       {
         kind: "drop",
@@ -915,7 +915,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 11 — Currency/Economy BOSS 2/5
+    // Stage 11 - Currency/Economy BOSS 2/5
     [
       {
         kind: "market",
@@ -932,7 +932,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Lira Lost 80% vs USD",
-        body: "The Turkish lira depreciated from 7 TRY/USD in 2020 to over 32 TRY/USD by early 2024 — an 80%+ collapse. USD-denominated rents, imports, and loan repayments caused severe real-income falls for households whose wages are paid in lira.",
+        body: "The Turkish lira depreciated from 7 TRY/USD in 2020 to over 32 TRY/USD by early 2024 - an 80%+ collapse. USD-denominated rents, imports, and loan repayments caused severe real-income falls for households whose wages are paid in lira.",
         valence: "bad",
       },
       {
@@ -948,7 +948,7 @@ const HUB_ITEMS = {
   // BANGKOK  (difficulty 0.72)
   // ─────────────────────────────────────────────
   bangkok: [
-    // Stage 1 — Arts, Culture & Recreation 5/5
+    // Stage 1 - Arts, Culture & Recreation 5/5
     [
       {
         kind: "temple",
@@ -976,7 +976,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 2 — Housing 4/5
+    // Stage 2 - Housing 4/5
     [
       {
         kind: "house",
@@ -993,7 +993,7 @@ const HUB_ITEMS = {
       {
         kind: "drop",
         title: "120,000 Flood-Risk Homes",
-        body: "Over 120,000 Bangkok homes lie in zones classified as high flood risk (Bangkok Metropolitan Administration 2023). The 2011 mega-flood inundated 800 km² of the metropolitan area for up to 2 months, causing USD 45 billion in total damages — Thailand's costliest disaster on record.",
+        body: "Over 120,000 Bangkok homes lie in zones classified as high flood risk (Bangkok Metropolitan Administration 2023). The 2011 mega-flood inundated 800 km² of the metropolitan area for up to 2 months, causing USD 45 billion in total damages - Thailand's costliest disaster on record.",
         valence: "bad",
       },
       {
@@ -1004,7 +1004,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 3 — Income and Wealth 3/5
+    // Stage 3 - Income and Wealth 3/5
     [
       {
         kind: "dollar",
@@ -1015,7 +1015,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Minimum Wage Raised 2024",
-        body: "Thailand's national minimum wage rose to THB 400/day (~USD 11) in January 2024 — the largest single increase in a decade — after sustained labour advocacy. Bangkok's higher living costs led its provincial board to set a local rate of THB 400, up from THB 353 in 2022.",
+        body: "Thailand's national minimum wage rose to THB 400/day (~USD 11) in January 2024 - the largest single increase in a decade - after sustained labour advocacy. Bangkok's higher living costs led its provincial board to set a local rate of THB 400, up from THB 353 in 2022.",
         valence: "good",
       },
       {
@@ -1032,7 +1032,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 4 — Work 3/5
+    // Stage 4 - Work 3/5
     [
       {
         kind: "factory",
@@ -1055,12 +1055,12 @@ const HUB_ITEMS = {
       {
         kind: "factory",
         title: "55% Informal Employment",
-        body: "Approximately 55% of Thailand's workforce is informally employed, with no labour protections, social security, or sick pay (ILO 2022). In Bangkok, informal street vendors, domestic workers, and construction labourers are particularly vulnerable — earning below minimum wage with no recourse.",
+        body: "Approximately 55% of Thailand's workforce is informally employed, with no labour protections, social security, or sick pay (ILO 2022). In Bangkok, informal street vendors, domestic workers, and construction labourers are particularly vulnerable - earning below minimum wage with no recourse.",
         valence: "bad",
       },
     ],
 
-    // Stage 5 — Health 3/5
+    // Stage 5 - Health 3/5
     [
       {
         kind: "hospital",
@@ -1088,7 +1088,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 6 — Learning 3/5
+    // Stage 6 - Learning 3/5
     [
       {
         kind:="school",
@@ -1099,13 +1099,13 @@ const HUB_ITEMS = {
       {
         kind: "book",
         title: "International School Boom",
-        body: "Bangkok has over 180 international schools — more than any other Southeast Asian city — serving both expatriate and wealthy Thai families. Schools like NIST International, Bangkok Patana, and Ruamrudee follow Cambridge/IB curricula and achieve strong university placement rates.",
+        body: "Bangkok has over 180 international schools - more than any other Southeast Asian city - serving both expatriate and wealthy Thai families. Schools like NIST International, Bangkok Patana, and Ruamrudee follow Cambridge/IB curricula and achieve strong university placement rates.",
         valence: "good",
       },
       {
         kind: "dollar",
         title: "Rural-Urban Quality Gap",
-        body: "PISA 2022 revealed a 90-point gap in reading scores between Bangkok students and those in rural Thailand — roughly equivalent to two academic years. Access to qualified teachers in provincial schools is a chronic problem; approximately 30% of rural teaching positions are unfilled (OBEC 2023).",
+        body: "PISA 2022 revealed a 90-point gap in reading scores between Bangkok students and those in rural Thailand - roughly equivalent to two academic years. Access to qualified teachers in provincial schools is a chronic problem; approximately 30% of rural teaching positions are unfilled (OBEC 2023).",
         valence: "bad",
       },
       {
@@ -1116,12 +1116,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 7 — Civic Engagement 3/5
+    // Stage 7 - Civic Engagement 3/5
     [
       {
         kind: "vote",
         title: "2023 Election: 75% Turnout",
-        body: "Thailand's May 2023 general election achieved 75% voter turnout, and the progressive Move Forward Party won the popular vote with 14.4 million votes — a record for a Thai opposition party. Youth civic energy was at a generational high point.",
+        body: "Thailand's May 2023 general election achieved 75% voter turnout, and the progressive Move Forward Party won the popular vote with 14.4 million votes - a record for a Thai opposition party. Youth civic energy was at a generational high point.",
         valence: "good",
       },
       {
@@ -1144,7 +1144,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 8 — State of the Sector 3/5
+    // Stage 8 - State of the Sector 3/5
     [
       {
         kind: "temple",
@@ -1155,24 +1155,24 @@ const HUB_ITEMS = {
       {
         kind: "crane",
         title: "Eastern Economic Corridor",
-        body: "Thailand's Eastern Economic Corridor (EEC) — a special economic zone covering 3 provinces east of Bangkok — attracted USD 35 billion in investment commitments by 2023. The associated high-speed rail link (Bangkok to Pattaya) is under construction.",
+        body: "Thailand's Eastern Economic Corridor (EEC) - a special economic zone covering 3 provinces east of Bangkok - attracted USD 35 billion in investment commitments by 2023. The associated high-speed rail link (Bangkok to Pattaya) is under construction.",
         valence: "good",
       },
       {
         kind: "flag",
         title: "Corruption Index: 36/100",
-        body: "Thailand scored 36/100 on Transparency International's 2023 CPI, ranking 108th globally. Police extortion, construction permit bribes, and procurement irregularities are well-documented by NACC investigations — though convictions of senior officials remain rare.",
+        body: "Thailand scored 36/100 on Transparency International's 2023 CPI, ranking 108th globally. Police extortion, construction permit bribes, and procurement irregularities are well-documented by NACC investigations - though convictions of senior officials remain rare.",
         valence: "bad",
       },
       {
         kind: "dollar",
         title: "Military Budget Overhang",
-        body: "Thailand's military received THB 222 billion (~USD 6.2 billion) in the 2024 budget — over 16% of discretionary government spending. Following multiple coups (2006, 2014), military-linked budget priorities have consistently outranked health, education, and public housing.",
+        body: "Thailand's military received THB 222 billion (~USD 6.2 billion) in the 2024 budget - over 16% of discretionary government spending. Following multiple coups (2006, 2014), military-linked budget priorities have consistently outranked health, education, and public housing.",
         valence: "bad",
       },
     ],
 
-    // Stage 9 — Safety 3/5
+    // Stage 9 - Safety 3/5
     [
       {
         kind: "flag",
@@ -1189,7 +1189,7 @@ const HUB_ITEMS = {
       {
         kind: "car",
         title: "Road Deaths: 20,000/yr",
-        body: "Thailand has one of the world's highest road fatality rates: approximately 20,000 deaths per year (WHO 2023), or 28 per 100,000 — more than 10x higher than the UK. Bangkok expressways and Songkran festival holidays are the deadliest periods; drunk driving is the leading cause.",
+        body: "Thailand has one of the world's highest road fatality rates: approximately 20,000 deaths per year (WHO 2023), or 28 per 100,000 - more than 10x higher than the UK. Bangkok expressways and Songkran festival holidays are the deadliest periods; drunk driving is the leading cause.",
         valence: "bad",
       },
       {
@@ -1200,7 +1200,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 10 — Getting Around 3/5
+    // Stage 10 - Getting Around 3/5
     [
       {
         kind: "metro",
@@ -1228,12 +1228,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 11 — Haze/Flood BOSS 2/5
+    // Stage 11 - Haze/Flood BOSS 2/5
     [
       {
         kind: "drop",
         title: "Canal Restoration Projects",
-        body: "The Bangkok Metropolitan Administration's 2023 Canal Restoration Master Plan is refurbishing 60 km of klongs (canals) as combined flood channels and greenways. Klong Ong Ang's revival in 2020 — adding lighting, markets, and walkways — is cited as a model for urban canal regeneration.",
+        body: "The Bangkok Metropolitan Administration's 2023 Canal Restoration Master Plan is refurbishing 60 km of klongs (canals) as combined flood channels and greenways. Klong Ong Ang's revival in 2020 - adding lighting, markets, and walkways - is cited as a model for urban canal regeneration.",
         valence: "good",
       },
       {
@@ -1245,7 +1245,7 @@ const HUB_ITEMS = {
       {
         kind: "smog",
         title: "Haze AQI Hits 'Hazardous'",
-        body: "Bangkok's PM2.5 regularly reaches AQI >200 ('Very Unhealthy') during February–April, driven by agricultural burning in northern Thailand and vehicle emissions. In March 2023 the city recorded AQI 285 — 'Hazardous' — on multiple days, prompting school closures and mask mandates.",
+        body: "Bangkok's PM2.5 regularly reaches AQI >200 ('Very Unhealthy') during February–April, driven by agricultural burning in northern Thailand and vehicle emissions. In March 2023 the city recorded AQI 285 - 'Hazardous' - on multiple days, prompting school closures and mask mandates.",
         valence: "bad",
       },
       {
@@ -1261,7 +1261,7 @@ const HUB_ITEMS = {
   // NEW DELHI  (difficulty 0.82)
   // ─────────────────────────────────────────────
   newdelhi: [
-    // Stage 1 — Arts, Culture & Recreation 4/5
+    // Stage 1 - Arts, Culture & Recreation 4/5
     [
       {
         kind: "temple",
@@ -1278,7 +1278,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Monument Access Inequity",
-        body: "India charges foreign tourists USD 17 at the Red Fort and USD 15 at Qutb Minar — 75 times the ₹35 Indian national rate. While financially justified, the two-tier system creates de-facto segregation in public heritage spaces, and online booking excludes visitors without smartphones.",
+        body: "India charges foreign tourists USD 17 at the Red Fort and USD 15 at Qutb Minar - 75 times the ₹35 Indian national rate. While financially justified, the two-tier system creates de-facto segregation in public heritage spaces, and online booking excludes visitors without smartphones.",
         valence: "bad",
       },
       {
@@ -1289,12 +1289,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 2 — Learning 3/5
+    // Stage 2 - Learning 3/5
     [
       {
         kind: "school",
         title: "IITs & IIMs Nearby",
-        body: "The Delhi-NCR region contains IIT Delhi (ranked 197 globally, QS 2024), IIM Ahmedabad's Delhi campus, and Jawaharlal Nehru University (JNU) — world-renowned for social sciences. Delhi University's 90 colleges form one of the world's largest residential university systems.",
+        body: "The Delhi-NCR region contains IIT Delhi (ranked 197 globally, QS 2024), IIM Ahmedabad's Delhi campus, and Jawaharlal Nehru University (JNU) - world-renowned for social sciences. Delhi University's 90 colleges form one of the world's largest residential university systems.",
         valence: "good",
       },
       {
@@ -1317,7 +1317,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 3 — Work 3/5
+    // Stage 3 - Work 3/5
     [
       {
         kind: "factory",
@@ -1334,23 +1334,23 @@ const HUB_ITEMS = {
       {
         kind: "factory",
         title: "60% Informal Employment",
-        body: "Approximately 60% of Delhi's workers are in the informal sector — street vendors, construction workers, domestic helpers — with no written contracts, social security, or sick leave (NSSO 2022). The pandemic wiped out 2.5 million informal jobs in Delhi in 2020, most of which returned only slowly.",
+        body: "Approximately 60% of Delhi's workers are in the informal sector - street vendors, construction workers, domestic helpers - with no written contracts, social security, or sick leave (NSSO 2022). The pandemic wiped out 2.5 million informal jobs in Delhi in 2020, most of which returned only slowly.",
         valence: "bad",
       },
       {
         kind: "dollar",
         title: "Graduate Unemployment 12%",
-        body: "India's graduate unemployment rate reached 12% nationally in 2023 (CMIE), with Delhi's educated unemployed concentrated in public-sector exam queues — hundreds of thousands apply for a handful of government positions. The mismatch between degree production and job creation is structural.",
+        body: "India's graduate unemployment rate reached 12% nationally in 2023 (CMIE), with Delhi's educated unemployed concentrated in public-sector exam queues - hundreds of thousands apply for a handful of government positions. The mismatch between degree production and job creation is structural.",
         valence: "bad",
       },
     ],
 
-    // Stage 4 — Civic Engagement 2/5
+    // Stage 4 - Civic Engagement 2/5
     [
       {
         kind: "vote",
         title: "High State Election Turnout",
-        body: "Delhi's 2020 state assembly election saw 62.8% turnout — above average for an Indian city election. The competitive AAP vs. BJP political environment keeps civic interest high; Delhi's resident welfare associations (RWAs) are among India's most active urban civic bodies.",
+        body: "Delhi's 2020 state assembly election saw 62.8% turnout - above average for an Indian city election. The competitive AAP vs. BJP political environment keeps civic interest high; Delhi's resident welfare associations (RWAs) are among India's most active urban civic bodies.",
         valence: "good",
       },
       {
@@ -1362,7 +1362,7 @@ const HUB_ITEMS = {
       {
         kind: "flag",
         title: "Bureaucratic Paralysis",
-        body: "Delhi is governed by three overlapping authorities — Lt. Governor, AAP state government, and Municipal Corporation — that routinely conflict. In 2022–23, the Supreme Court and Parliament both ruled on Delhi governance disputes, leaving basic services like waste management stalled for months.",
+        body: "Delhi is governed by three overlapping authorities - Lt. Governor, AAP state government, and Municipal Corporation - that routinely conflict. In 2022–23, the Supreme Court and Parliament both ruled on Delhi governance disputes, leaving basic services like waste management stalled for months.",
         valence: "bad",
       },
       {
@@ -1373,7 +1373,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 5 — Health 2/5
+    // Stage 5 - Health 2/5
     [
       {
         kind: "hospital",
@@ -1390,23 +1390,23 @@ const HUB_ITEMS = {
       {
         kind: "hospital",
         title: "Doctor Deficit: 1 per 2,000",
-        body: "Delhi has approximately 1 doctor per 2,000 residents in the public sector — well below the WHO recommended ratio of 1:1,000. AIIMS receives 10,000+ daily outpatient visits; patients from 20+ states queue from 3 AM for 6 AM appointments, reflecting extreme national primary care scarcity.",
+        body: "Delhi has approximately 1 doctor per 2,000 residents in the public sector - well below the WHO recommended ratio of 1:1,000. AIIMS receives 10,000+ daily outpatient visits; patients from 20+ states queue from 3 AM for 6 AM appointments, reflecting extreme national primary care scarcity.",
         valence: "bad",
       },
       {
         kind: "smog",
         title: "Air Pollution Kills 12,000/yr",
-        body: "A 2023 Lancet Planetary Health study attributed approximately 12,000 premature deaths annually in Delhi to PM2.5 air pollution — equivalent to 33 deaths per day. Children in Delhi show lung function 30–40% lower than WHO norms (Chhabra et al. 2021), causing life-long health deficits.",
+        body: "A 2023 Lancet Planetary Health study attributed approximately 12,000 premature deaths annually in Delhi to PM2.5 air pollution - equivalent to 33 deaths per day. Children in Delhi show lung function 30–40% lower than WHO norms (Chhabra et al. 2021), causing life-long health deficits.",
         valence: "bad",
       },
     ],
 
-    // Stage 6 — State of the Sector 2/5
+    // Stage 6 - State of the Sector 2/5
     [
       {
         kind: "crane",
         title: "Metro: 390 km Network",
-        body: "Delhi Metro Rail Corporation (DMRC) operates 390 km on 12 lines — the 5th longest metro network in the world. Phase IV added 65 km from 2020–2025. The metro carries 5.5 million daily riders, has reduced Delhi's CO₂ by an estimated 630,000 tonnes/year, and won UN Environment Awards.",
+        body: "Delhi Metro Rail Corporation (DMRC) operates 390 km on 12 lines - the 5th longest metro network in the world. Phase IV added 65 km from 2020–2025. The metro carries 5.5 million daily riders, has reduced Delhi's CO₂ by an estimated 630,000 tonnes/year, and won UN Environment Awards.",
         valence: "good",
       },
       {
@@ -1424,12 +1424,12 @@ const HUB_ITEMS = {
       {
         kind: "drop",
         title: "Water Crisis: 40% Deficit",
-        body: "The Delhi Jal Board supplies only 935 million gallons per day against a demand of 1,140 MGD — a 40% deficit (2023). Over 3 million Delhi residents receive water for fewer than 4 hours per day, relying on costly private tankers. Non-revenue water loss exceeds 40% due to ageing pipes.",
+        body: "The Delhi Jal Board supplies only 935 million gallons per day against a demand of 1,140 MGD - a 40% deficit (2023). Over 3 million Delhi residents receive water for fewer than 4 hours per day, relying on costly private tankers. Non-revenue water loss exceeds 40% due to ageing pipes.",
         valence: "bad",
       },
     ],
 
-    // Stage 7 — Income and Wealth 2/5
+    // Stage 7 - Income and Wealth 2/5
     [
       {
         kind: "dollar",
@@ -1446,7 +1446,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "40% Below Poverty Line",
-        body: "Approximately 40% of Delhi's population — concentrated in JJ clusters (jhuggi-jhonpri informal settlements, housing ~3 million people) and resettlement colonies — lives on incomes below a meaningful poverty line. The bottom quintile spends over 60% of income on food and rent.",
+        body: "Approximately 40% of Delhi's population - concentrated in JJ clusters (jhuggi-jhonpri informal settlements, housing ~3 million people) and resettlement colonies - lives on incomes below a meaningful poverty line. The bottom quintile spends over 60% of income on food and rent.",
         valence: "bad",
       },
       {
@@ -1457,7 +1457,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 8 — Getting Around 2/5
+    // Stage 8 - Getting Around 2/5
     [
       {
         kind: "metro",
@@ -1474,7 +1474,7 @@ const HUB_ITEMS = {
       {
         kind: "car",
         title: "11 Million Vehicles: Gridlock",
-        body: "Delhi has over 11 million registered vehicles (VAHAN 2023) — more than Mumbai, Chennai, and Kolkata combined. Average CBD traffic speeds dropped to 18 km/h in peak hours (TomTom 2023). The odd-even vehicle rationing scheme, tried twice, produced only temporary relief.",
+        body: "Delhi has over 11 million registered vehicles (VAHAN 2023) - more than Mumbai, Chennai, and Kolkata combined. Average CBD traffic speeds dropped to 18 km/h in peak hours (TomTom 2023). The odd-even vehicle rationing scheme, tried twice, produced only temporary relief.",
         valence: "bad",
       },
       {
@@ -1485,7 +1485,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 9 — Housing 2/5
+    // Stage 9 - Housing 2/5
     [
       {
         kind: "house",
@@ -1496,13 +1496,13 @@ const HUB_ITEMS = {
       {
         kind: "crane",
         title: "Plotted Development Affordable",
-        body: "Peripheral Delhi-NCR areas — Faridabad, Greater Noida, Ghaziabad — offer plotted residential properties from ₹15–30 lakh (~USD 18,000–36,000), providing formal ownership accessible to middle-income families. Land-pooling reforms (2021) aim to streamline legal development of fringe land.",
+        body: "Peripheral Delhi-NCR areas - Faridabad, Greater Noida, Ghaziabad - offer plotted residential properties from ₹15–30 lakh (~USD 18,000–36,000), providing formal ownership accessible to middle-income families. Land-pooling reforms (2021) aim to streamline legal development of fringe land.",
         valence: "good",
       },
       {
         kind: "house",
         title: "3 Million in JJ Clusters",
-        body: "Approximately 3 million people live in 675 recognised jhuggi-jhonpri clusters across Delhi — informal settlements with insecure tenure, inadequate water, and minimal sanitation (Delhi Urban Shelter Improvement Board 2022). Demolitions for infrastructure projects regularly displace residents without adequate resettlement.",
+        body: "Approximately 3 million people live in 675 recognised jhuggi-jhonpri clusters across Delhi - informal settlements with insecure tenure, inadequate water, and minimal sanitation (Delhi Urban Shelter Improvement Board 2022). Demolitions for infrastructure projects regularly displace residents without adequate resettlement.",
         valence: "bad",
       },
       {
@@ -1513,12 +1513,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 10 — Safety 2/5
+    // Stage 10 - Safety 2/5
     [
       {
         kind: "flag",
         title: "Policing Visibility High",
-        body: "Delhi Police operates 214 police stations with over 84,000 officers — one of South Asia's largest city police forces per capita. Deployment of PCR (Police Control Room) vans in every district ensures response times that, while variable, are among the best in India.",
+        body: "Delhi Police operates 214 police stations with over 84,000 officers - one of South Asia's largest city police forces per capita. Deployment of PCR (Police Control Room) vans in every district ensures response times that, while variable, are among the best in India.",
         valence: "good",
       },
       {
@@ -1530,7 +1530,7 @@ const HUB_ITEMS = {
       {
         kind: "flag",
         title: "Gender Violence Crisis",
-        body: "Delhi recorded 14,158 crimes against women in 2022 (NCRB) — the highest of any Indian city — including 1,716 reported rapes. The 2012 Nirbhaya gang-rape catalysed national reforms, but conviction rates remain at 27%, and women consistently rank Delhi among India's most dangerous cities for gender safety.",
+        body: "Delhi recorded 14,158 crimes against women in 2022 (NCRB) - the highest of any Indian city - including 1,716 reported rapes. The 2012 Nirbhaya gang-rape catalysed national reforms, but conviction rates remain at 27%, and women consistently rank Delhi among India's most dangerous cities for gender safety.",
         valence: "bad",
       },
       {
@@ -1541,7 +1541,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 11 — Smog BOSS 1/5
+    // Stage 11 - Smog BOSS 1/5
     [
       {
         kind: "leaf",
@@ -1558,7 +1558,7 @@ const HUB_ITEMS = {
       {
         kind: "smog",
         title: "World's Most Polluted Capital",
-        body: "Delhi ranked as the world's most polluted capital city in IQAir's 2023 World Air Quality Report, with an annual average PM2.5 of 92.7 μg/m³ — 18.5 times the WHO guideline of 5 μg/m³. The city exceeded AQI 400 ('Severe') on 26 days in November 2023 alone.",
+        body: "Delhi ranked as the world's most polluted capital city in IQAir's 2023 World Air Quality Report, with an annual average PM2.5 of 92.7 μg/m³ - 18.5 times the WHO guideline of 5 μg/m³. The city exceeded AQI 400 ('Severe') on 26 days in November 2023 alone.",
         valence: "bad",
       },
       {
@@ -1574,18 +1574,18 @@ const HUB_ITEMS = {
   // LAGOS  (difficulty 0.95)
   // ─────────────────────────────────────────────
   lagos: [
-    // Stage 1 — Arts, Culture & Recreation 4/5
+    // Stage 1 - Arts, Culture & Recreation 4/5
     [
       {
         kind: "plaque",
         title: "Afrobeats Global HQ",
-        body: "Lagos is the birthplace and global capital of Afrobeats: artists including Burna Boy, Wizkid, and Davido — all Lagos-based — generated over USD 100 million in streaming and concert revenue in 2023. The genre's global reach has made Nigerian music a leading cultural export, surpassing oil in some soft-power metrics.",
+        body: "Lagos is the birthplace and global capital of Afrobeats: artists including Burna Boy, Wizkid, and Davido - all Lagos-based - generated over USD 100 million in streaming and concert revenue in 2023. The genre's global reach has made Nigerian music a leading cultural export, surpassing oil in some soft-power metrics.",
         valence: "good",
       },
       {
         kind: "temple",
         title: "Nollywood: 2,500 Films/yr",
-        body: "Lagos's Nollywood is the world's 2nd-largest film industry by output (2,500+ films annually) and 3rd by revenue, after Hollywood and Bollywood. Netflix's 2016 entry into Nollywood — and its USD 15 million original production fund for Nigeria — has elevated production values globally.",
+        body: "Lagos's Nollywood is the world's 2nd-largest film industry by output (2,500+ films annually) and 3rd by revenue, after Hollywood and Bollywood. Netflix's 2016 entry into Nollywood - and its USD 15 million original production fund for Nigeria - has elevated production values globally.",
         valence: "good",
       },
       {
@@ -1597,17 +1597,17 @@ const HUB_ITEMS = {
       {
         kind: "flag",
         title: "Public Spaces Deficient",
-        body: "Lagos has approximately 0.4 m² of public green or recreational space per resident — well below the UN-Habitat recommended 9 m² (Lagos State Physical Planning Authority 2023). The few public beaches (Elegushi, Bar Beach) are privatised; most residents in mainland slums have no accessible park within 1 km.",
+        body: "Lagos has approximately 0.4 m² of public green or recreational space per resident - well below the UN-Habitat recommended 9 m² (Lagos State Physical Planning Authority 2023). The few public beaches (Elegushi, Bar Beach) are privatised; most residents in mainland slums have no accessible park within 1 km.",
         valence: "bad",
       },
     ],
 
-    // Stage 2 — Work 2/5
+    // Stage 2 - Work 2/5
     [
       {
         kind: "factory",
         title: "Sub-Saharan Africa's Largest Economy",
-        body: "Lagos State alone generates approximately 30% of Nigeria's GDP — roughly USD 136 billion in 2022 (Lagos State Government data). The city is home to the Nigerian Stock Exchange, the headquarters of 65% of Nigeria's top 100 companies, and West Africa's largest port (Apapa).",
+        body: "Lagos State alone generates approximately 30% of Nigeria's GDP - roughly USD 136 billion in 2022 (Lagos State Government data). The city is home to the Nigerian Stock Exchange, the headquarters of 65% of Nigeria's top 100 companies, and West Africa's largest port (Apapa).",
         valence: "good",
       },
       {
@@ -1619,7 +1619,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Unemployment Rate: 34%",
-        body: "Lagos's unemployment and underemployment rate reached 34% in 2022 (NBS), concentrated among youth aged 15–35. Approximately 600,000 new workers enter the Lagos labour market each year, but formal job creation runs at roughly 150,000 positions annually — a structural deficit.",
+        body: "Lagos's unemployment and underemployment rate reached 34% in 2022 (NBS), concentrated among youth aged 15–35. Approximately 600,000 new workers enter the Lagos labour market each year, but formal job creation runs at roughly 150,000 positions annually - a structural deficit.",
         valence: "bad",
       },
       {
@@ -1630,12 +1630,12 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 3 — Civic Engagement 2/5
+    // Stage 3 - Civic Engagement 2/5
     [
       {
         kind: "vote",
         title: "#EndSARS Movement 2020",
-        body: "The October 2020 #EndSARS protests — the largest Nigerian civil uprising in a generation — originated in Lagos and saw hundreds of thousands demonstrate against police brutality. The movement forced the formal disbandment of the Special Anti-Robbery Squad and showcased remarkable youth-led digital civic organisation.",
+        body: "The October 2020 #EndSARS protests - the largest Nigerian civil uprising in a generation - originated in Lagos and saw hundreds of thousands demonstrate against police brutality. The movement forced the formal disbandment of the Special Anti-Robbery Squad and showcased remarkable youth-led digital civic organisation.",
         valence: "good",
       },
       {
@@ -1647,7 +1647,7 @@ const HUB_ITEMS = {
       {
         kind: "vote",
         title: "2023 Election Turnout: 22%",
-        body: "Nigeria's February 2023 presidential election saw just 22% voter turnout nationally, the lowest since the return of democracy in 1999 (INEC). In Lagos, results were disputed due to widespread reports of BVAS malfunction, violence, and results collation irregularities — compounding voter disillusionment.",
+        body: "Nigeria's February 2023 presidential election saw just 22% voter turnout nationally, the lowest since the return of democracy in 1999 (INEC). In Lagos, results were disputed due to widespread reports of BVAS malfunction, violence, and results collation irregularities - compounding voter disillusionment.",
         valence: "bad",
       },
       {
@@ -1658,7 +1658,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 4 — Learning 2/5
+    // Stage 4 - Learning 2/5
     [
       {
         kind: "school",
@@ -1675,7 +1675,7 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "ASUU Strike: 8 Months Lost",
-        body: "The Academic Staff Union of Universities (ASUU) industrial action from February to October 2022 — the longest in Nigerian history — closed all federal universities for 8 months, disrupting 1.5 million students. The dispute centred on 13 years of unfulfilled government salary and infrastructure promises.",
+        body: "The Academic Staff Union of Universities (ASUU) industrial action from February to October 2022 - the longest in Nigerian history - closed all federal universities for 8 months, disrupting 1.5 million students. The dispute centred on 13 years of unfulfilled government salary and infrastructure promises.",
         valence: "bad",
       },
       {
@@ -1686,7 +1686,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 5 — Income and Wealth 1/5
+    // Stage 5 - Income and Wealth 1/5
     [
       {
         kind: "dollar",
@@ -1697,7 +1697,7 @@ const HUB_ITEMS = {
       {
         kind: "market",
         title: "Dangote: Africa's Richest",
-        body: "Aliko Dangote — the world's wealthiest Black person (USD 19.6 billion, Forbes 2024) — is based in Lagos and employs over 30,000 people through Dangote Cement, Sugar, and his landmark 650,000 bpd Dangote Refinery (commissioned 2024), the largest single-train refinery ever built.",
+        body: "Aliko Dangote - the world's wealthiest Black person (USD 19.6 billion, Forbes 2024) - is based in Lagos and employs over 30,000 people through Dangote Cement, Sugar, and his landmark 650,000 bpd Dangote Refinery (commissioned 2024), the largest single-train refinery ever built.",
         valence: "good",
       },
       {
@@ -1709,23 +1709,23 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Naira Lost 70% in 2023",
-        body: "Following the CBN's June 2023 forex unification, the naira fell from NGN 460 to NGN 1,600+ per USD by early 2024 — a 70%+ devaluation. Food inflation exceeded 37% by year-end 2023, and real incomes for salaried workers collapsed, triggering the worst cost-of-living crisis in a generation.",
+        body: "Following the CBN's June 2023 forex unification, the naira fell from NGN 460 to NGN 1,600+ per USD by early 2024 - a 70%+ devaluation. Food inflation exceeded 37% by year-end 2023, and real incomes for salaried workers collapsed, triggering the worst cost-of-living crisis in a generation.",
         valence: "bad",
       },
     ],
 
-    // Stage 6 — State of the Sector 1/5
+    // Stage 6 - State of the Sector 1/5
     [
       {
         kind: "crane",
         title: "Blue Line Rail Opens 2023",
-        body: "Lagos opened Phase 1 of its Blue Line metro rail in June 2023 — the first rail transit in Nigeria in over 50 years. The 13-km Marina–National Theatre segment, built at a cost of USD 1.2 billion, carries up to 150,000 daily passengers and marks a historic infrastructure milestone.",
+        body: "Lagos opened Phase 1 of its Blue Line metro rail in June 2023 - the first rail transit in Nigeria in over 50 years. The 13-km Marina–National Theatre segment, built at a cost of USD 1.2 billion, carries up to 150,000 daily passengers and marks a historic infrastructure milestone.",
         valence: "good",
       },
       {
         kind: "flag",
         title: "LASG Tax Revenue Rising",
-        body: "Lagos State generated NGN 763 billion in internally generated revenue in 2022 (LIRS), the highest of any Nigerian state — 4x its 2015 level. This growing fiscal base has funded road expansions, social housing, and the Lagos BRT network serving 500,000 daily commuters.",
+        body: "Lagos State generated NGN 763 billion in internally generated revenue in 2022 (LIRS), the highest of any Nigerian state - 4x its 2015 level. This growing fiscal base has funded road expansions, social housing, and the Lagos BRT network serving 500,000 daily commuters.",
         valence: "good",
       },
       {
@@ -1737,12 +1737,12 @@ const HUB_ITEMS = {
       {
         kind: "factory",
         title: "Corruption Index: 25/100",
-        body: "Nigeria scored 25/100 on Transparency International's 2023 CPI — 145th out of 180 countries — reflecting pervasive bribery in police, judiciary, and public contracting. The EFCC estimates Nigeria loses USD 18 billion per year to corruption, hollowing out infrastructure and social service delivery.",
+        body: "Nigeria scored 25/100 on Transparency International's 2023 CPI - 145th out of 180 countries - reflecting pervasive bribery in police, judiciary, and public contracting. The EFCC estimates Nigeria loses USD 18 billion per year to corruption, hollowing out infrastructure and social service delivery.",
         valence: "bad",
       },
     ],
 
-    // Stage 7 — Health 1/5
+    // Stage 7 - Health 1/5
     [
       {
         kind: "hospital",
@@ -1759,29 +1759,29 @@ const HUB_ITEMS = {
       {
         kind: "dollar",
         title: "Healthcare Spending: USD 25/person",
-        body: "Nigeria's government health expenditure is approximately USD 25 per person per year (World Bank 2022) — among the world's lowest, and far below the USD 86 WHO threshold for basic services. This forces 95% of Lagosians to rely on out-of-pocket payments, causing catastrophic costs for serious illness.",
+        body: "Nigeria's government health expenditure is approximately USD 25 per person per year (World Bank 2022) - among the world's lowest, and far below the USD 86 WHO threshold for basic services. This forces 95% of Lagosians to rely on out-of-pocket payments, causing catastrophic costs for serious illness.",
         valence: "bad",
       },
       {
         kind: "hospital",
         title: "Maternal Mortality: 512/100,000",
-        body: "Nigeria's maternal mortality ratio stands at 512 per 100,000 live births (WHO 2020) — one of the world's highest — and Lagos, despite being the wealthiest state, still records roughly 280 per 100,000. Haemorrhage, eclampsia, and obstructed labour remain leading causes, largely preventable with basic obstetric care.",
+        body: "Nigeria's maternal mortality ratio stands at 512 per 100,000 live births (WHO 2020) - one of the world's highest - and Lagos, despite being the wealthiest state, still records roughly 280 per 100,000. Haemorrhage, eclampsia, and obstructed labour remain leading causes, largely preventable with basic obstetric care.",
         valence: "bad",
       },
     ],
 
-    // Stage 8 — Housing 1/5
+    // Stage 8 - Housing 1/5
     [
       {
         kind: "house",
         title: "Makoko Floating School",
-        body: "Makoko — a waterfront community of 100,000–250,000 people built on stilts over Lagos Lagoon — represents adaptive vernacular architecture refined over 200 years. NLÉ Architects' 2013 Makoko Floating School prototype, though later destroyed by storms, inspired global debate on climate-adaptive housing for informal urban communities.",
+        body: "Makoko - a waterfront community of 100,000–250,000 people built on stilts over Lagos Lagoon - represents adaptive vernacular architecture refined over 200 years. NLÉ Architects' 2013 Makoko Floating School prototype, though later destroyed by storms, inspired global debate on climate-adaptive housing for informal urban communities.",
         valence: "good",
       },
       {
         kind: "crane",
         title: "Eko Atlantic City",
-        body: "Eko Atlantic — a 10 km² planned city reclaimed from the Atlantic Ocean, begun 2008 — represents a USD 6 billion private investment in premium residential and commercial real estate. Its 400,000-tonne 'Great Wall of Lagos' sea barrier also protects Victoria Island from coastal erosion.",
+        body: "Eko Atlantic - a 10 km² planned city reclaimed from the Atlantic Ocean, begun 2008 - represents a USD 6 billion private investment in premium residential and commercial real estate. Its 400,000-tonne 'Great Wall of Lagos' sea barrier also protects Victoria Island from coastal erosion.",
         valence: "good",
       },
       {
@@ -1798,7 +1798,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 9 — Environment 1/5
+    // Stage 9 - Environment 1/5
     [
       {
         kind: "drop",
@@ -1826,7 +1826,7 @@ const HUB_ITEMS = {
       },
     ],
 
-    // Stage 10 — Safety 1/5
+    // Stage 10 - Safety 1/5
     [
       {
         kind: "flag",
@@ -1843,40 +1843,40 @@ const HUB_ITEMS = {
       {
         kind: "flag",
         title: "Armed Robbery Prevalent",
-        body: "The US State Department's 2024 Travel Advisory rates Lagos at Level 2 (Exercise Increased Caution) due to crime, including armed robbery, carjacking, and kidnapping for ransom — particularly on the Lagos-Benin Expressway. One-way motorists are vulnerable during traffic paralysis (known locally as 'go-slow').",
+        body: "The US State Department's 2024 Travel Advisory rates Lagos at Level 2 (Exercise Increased Caution) due to crime, including armed robbery, carjacking, and kidnapping for ransom - particularly on the Lagos-Benin Expressway. One-way motorists are vulnerable during traffic paralysis (known locally as 'go-slow').",
         valence: "bad",
       },
       {
         kind: "dollar",
         title: "Police-to-Resident Ratio: 1:2,000",
-        body: "Nigeria's police force has approximately 1 officer per 2,000 residents (NPF 2022) — the UN recommends 1:450. In Lagos, an estimated 50% of police posts are understaffed and officers frequently solicit bribes at checkpoints rather than responding to crime; a 2021 survey found 74% of Lagosians paid a bribe to police in the prior year.",
+        body: "Nigeria's police force has approximately 1 officer per 2,000 residents (NPF 2022) - the UN recommends 1:450. In Lagos, an estimated 50% of police posts are understaffed and officers frequently solicit bribes at checkpoints rather than responding to crime; a 2021 survey found 74% of Lagosians paid a bribe to police in the prior year.",
         valence: "bad",
       },
     ],
 
-    // Stage 11 — Gridlock/Inequality BOSS 1/5
+    // Stage 11 - Gridlock/Inequality BOSS 1/5
     [
       {
         kind: "metro",
         title: "BRT: 500,000 Daily Riders",
-        body: "The Lagos BRT-Lite scheme — Africa's first formal bus rapid transit system (launched 2008) — now carries 500,000 passengers daily along the 22-km Ikorodu–CMS corridor. Its dedicated lanes, prepaid cards, and formal stops represent a transformative improvement over chaotic danfo buses.",
+        body: "The Lagos BRT-Lite scheme - Africa's first formal bus rapid transit system (launched 2008) - now carries 500,000 passengers daily along the 22-km Ikorodu–CMS corridor. Its dedicated lanes, prepaid cards, and formal stops represent a transformative improvement over chaotic danfo buses.",
         valence: "good",
       },
       {
         kind: "ferry",
         title: "Water Transport Revival",
-        body: "The Lagos Ferry Service operates 14 routes connecting the mainland to Lagos Island, carrying over 100,000 daily passengers. Government subsidies keep fares at NGN 400–800 (~USD 0.25–0.50) — far cheaper than road transport — making it a critical low-income commuter route across the lagoon.",
+        body: "The Lagos Ferry Service operates 14 routes connecting the mainland to Lagos Island, carrying over 100,000 daily passengers. Government subsidies keep fares at NGN 400–800 (~USD 0.25–0.50) - far cheaper than road transport - making it a critical low-income commuter route across the lagoon.",
         valence: "good",
       },
       {
         kind: "car",
         title: "Apapa Port Gridlock: 72-hr Queues",
-        body: "Congestion around Apapa port — handling 70% of Nigeria's containerised trade — causes truck queues stretching 57+ km on some days. The gridlock costs Nigerian businesses an estimated USD 2 billion annually in demurrage, spoilage, and fuel idling (Manufacturers Association of Nigeria 2023). Despite e-call-up systems (2021), the bottleneck persists.",
+        body: "Congestion around Apapa port - handling 70% of Nigeria's containerised trade - causes truck queues stretching 57+ km on some days. The gridlock costs Nigerian businesses an estimated USD 2 billion annually in demurrage, spoilage, and fuel idling (Manufacturers Association of Nigeria 2023). Despite e-call-up systems (2021), the bottleneck persists.",
         valence: "bad",
       },
       {
         kind: "dollar",
-        title: "Gini: 0.49 — Extreme Gap",
+        title: "Gini: 0.49 - Extreme Gap",
         body: "Nigeria's Gini coefficient is 0.49 (World Bank 2018–20), placing it among Africa's most unequal economies. In Lagos this manifests as islands of ultra-wealth (Ikoyi, Victoria Island) minutes from some of Africa's most overcrowded slums (Ajegunle, Makoko). The top 2% own more than the bottom 55% combined.",
         valence: "bad",
       },

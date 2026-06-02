@@ -1,5 +1,5 @@
-/**
- * Stage-topic visuals — skies, particles, and prop pools keyed to hazard theme / category.
+﻿/**
+ * Stage-topic visuals - skies, particles, and prop pools keyed to hazard theme / category.
  */
 (function () {
   "use strict";

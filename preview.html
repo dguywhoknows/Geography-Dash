@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Geography Dash — Visual Preview</title>
+  <title>Geography Dash - Visual Preview</title>
   <style>
     body { background: #111; margin: 0; padding: 24px; font-family: system-ui, sans-serif; color: #eee; }
     h1  { color: #fff; margin: 0 0 4px; font-size: 22px; }
@@ -45,18 +45,18 @@
   <script>
     (function () {
       const captures = [
-        { cityIdx: 0, stageIdx: 0,  label: 'Copenhagen  ·  Stage 1 — Environment (Wind Turbines)' },
-        { cityIdx: 0, stageIdx: 10, label: 'Copenhagen  ·  Stage 11 — Boss Tower Finale' },
+        { cityIdx: 0, stageIdx: 0,  label: 'Copenhagen  ·  Stage 1 - Environment (Wind Turbines)' },
+        { cityIdx: 0, stageIdx: 10, label: 'Copenhagen  ·  Stage 11 - Boss Tower Finale' },
         { cityIdx: 1, stageIdx: 0,  label: 'Toronto  ·  Stage 1' },
-        { cityIdx: 1, stageIdx: 10, label: 'Toronto  ·  Stage 11 — Boss Sprawl Finale' },
+        { cityIdx: 1, stageIdx: 10, label: 'Toronto  ·  Stage 11 - Boss Sprawl Finale' },
         { cityIdx: 2, stageIdx: 0,  label: 'Istanbul  ·  Stage 1' },
         { cityIdx: 2, stageIdx: 5,  label: 'Istanbul  ·  Stage 6' },
         { cityIdx: 3, stageIdx: 0,  label: 'Bangkok  ·  Stage 1' },
-        { cityIdx: 3, stageIdx: 10, label: 'Bangkok  ·  Stage 11 — Boss Storm Finale' },
+        { cityIdx: 3, stageIdx: 10, label: 'Bangkok  ·  Stage 11 - Boss Storm Finale' },
         { cityIdx: 4, stageIdx: 0,  label: 'New Delhi  ·  Stage 1' },
-        { cityIdx: 4, stageIdx: 10, label: 'New Delhi  ·  Stage 11 — Boss Volatile Finale' },
+        { cityIdx: 4, stageIdx: 10, label: 'New Delhi  ·  Stage 11 - Boss Volatile Finale' },
         { cityIdx: 5, stageIdx: 0,  label: 'Lagos  ·  Stage 1' },
-        { cityIdx: 5, stageIdx: 10, label: 'Lagos  ·  Stage 11 — Boss Gridlock Finale' },
+        { cityIdx: 5, stageIdx: 10, label: 'Lagos  ·  Stage 11 - Boss Gridlock Finale' },
       ];
 
       const STATUS = document.getElementById('status');
@@ -101,7 +101,7 @@
           } catch (e) {
             var card = document.createElement('div');
             card.className = 'card';
-            card.innerHTML = '<h2>' + cap.label + ' — ERROR</h2><pre style="color:#f66;padding:8px;font-size:11px">' + e.message + '\n' + (e.stack || '').slice(0,400) + '</pre>';
+            card.innerHTML = '<h2>' + cap.label + ' - ERROR</h2><pre style="color:#f66;padding:8px;font-size:11px">' + e.message + '\n' + (e.stack || '').slice(0,400) + '</pre>';
             GRID.appendChild(card);
           }
         }

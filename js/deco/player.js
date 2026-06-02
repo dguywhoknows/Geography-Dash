@@ -1,5 +1,5 @@
-/**
- * Animated player character — redesigned for PLAYER_W=28, PLAYER_H=32.
+﻿/**
+ * Animated player character - redesigned for PLAYER_W=28, PLAYER_H=32.
  * All skeleton heights are measured in px ABOVE the feet baseline (by = p.y + PH).
  *
  * Features preserved from the original:
@@ -151,7 +151,7 @@
     //  waistH  = 16
     //  shldH   = 21
     //  neckH   = 23
-    //  headCH  = 27   (head centre — skull top at ~33 px, hair ~35 px)
+    //  headCH  = 27   (head centre - skull top at ~33 px, hair ~35 px)
 
     const hipY   = by - 14;
     const waistY = by - 16;

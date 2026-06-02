@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   "use strict";
 
   const G = window.GEOGRAPHY_DASH;
@@ -34,14 +34,24 @@
   let selectedStageIndex = 0;
 
   // ── Progression tracking ──────────────────────────────────────────────────
-  // Shape: { "copenhagen": { "0": true, "1": true, … }, "toronto": { … } }
+  // Stage progress: { "copenhagen": { "0": true, "1": true, … }, "toronto": { … } }
+  // Hub progress:   same shape, stored separately in gd_hub_progress.
   let PROGRESS = {};
   try {
     PROGRESS = JSON.parse(localStorage.getItem("gd_progress") || "{}");
   } catch (_) { PROGRESS = {}; }
 
+  let HUB_PROGRESS = {};
+  try {
+    HUB_PROGRESS = JSON.parse(localStorage.getItem("gd_hub_progress") || "{}");
+  } catch (_) { HUB_PROGRESS = {}; }
+
   function saveProgress() {
     try { localStorage.setItem("gd_progress", JSON.stringify(PROGRESS)); } catch (_) {}
+  }
+
+  function saveHubProgress() {
+    try { localStorage.setItem("gd_hub_progress", JSON.stringify(HUB_PROGRESS)); } catch (_) {}
   }
 
   function isStageComplete(cityId, si) {
@@ -54,6 +64,34 @@
     saveProgress();
   }
 
+  function isHubComplete(cityId, si) {
+    return !!(HUB_PROGRESS[cityId] && HUB_PROGRESS[cityId][String(si)]);
+  }
+
+  function markHubComplete(cityId, si) {
+    if (!HUB_PROGRESS[cityId]) HUB_PROGRESS[cityId] = {};
+    HUB_PROGRESS[cityId][String(si)] = true;
+    saveHubProgress();
+  }
+
+  // Migration: players who had progress before hub-gating was added keep their unlocks.
+  // Any stage that was already completed also gets its hub marked as done automatically.
+  (function migrateHubProgress() {
+    var changed = false;
+    G.cities.forEach(function (city) {
+      var sp = PROGRESS[city.id];
+      if (!sp) return;
+      Object.keys(sp).forEach(function (siStr) {
+        if (sp[siStr] && !(HUB_PROGRESS[city.id] && HUB_PROGRESS[city.id][siStr])) {
+          if (!HUB_PROGRESS[city.id]) HUB_PROGRESS[city.id] = {};
+          HUB_PROGRESS[city.id][siStr] = true;
+          changed = true;
+        }
+      });
+    });
+    if (changed) saveHubProgress();
+  })();
+
   function isCityComplete(cityId) {
     const city = G.cities.find(function (c) { return c.id === cityId; });
     if (!city) return false;
@@ -64,13 +102,15 @@
   }
 
   function cityUnlocked(/* cityIdx */) {
-    return true; // all cities unlocked — stages within a city still require the previous stage
+    return true; // all cities unlocked - stages within a city still require the previous stage
   }
 
   function stageUnlocked(cityIdx, si) {
     if (!cityUnlocked(cityIdx)) return false;
     if (si === 0) return true;
-    return isStageComplete(G.cities[cityIdx].id, si - 1);
+    const cityId = G.cities[cityIdx].id;
+    // Stage N unlocks only after stage N-1 AND the stage N-1 rest hub are both complete.
+    return isStageComplete(cityId, si - 1) && isHubComplete(cityId, si - 1);
   }
 
   // ── Layout helpers ────────────────────────────────────────────────────────
@@ -207,7 +247,12 @@
         (complete ? " stage-row--done" : "");
       tr.setAttribute("data-si", String(si));
 
-      const lockIcon = unlocked ? "" : ' <span class="lock-icon" title="Beat the previous stage first">🔒</span>';
+      const prevStageOk = si === 0 || isStageComplete(city.id, si - 1);
+      const prevHubOk   = si === 0 || isHubComplete(city.id, si - 1);
+      const lockReason  = !prevStageOk ? "Beat stage " + si + " first"
+                        : !prevHubOk   ? "Complete the stage " + si + " rest hub first"
+                        : "";
+      const lockIcon = unlocked ? "" : ' <span class="lock-icon" title="' + lockReason + '">🔒</span>';
       const doneIcon = complete ? ' <span class="done-icon">✓</span>' : "";
 
       tr.innerHTML =
@@ -277,13 +322,13 @@
     if (game.mode === "hub") {
       const st = city.stages[game.hubStageIndex != null ? game.hubStageIndex : 0];
       document.getElementById("hud-stage").textContent =
-        "Rest hub · " + st.factor + " — walk & press E at exhibits · reach exit";
+        "Rest hub · " + st.factor + " - walk & press E at exhibits · reach exit";
       document.getElementById("hud-check").textContent =
         "Exploration plaza (stage " + (game.hubStageIndex + 1) + ")";
     } else {
       const st = city.stages[game.stageIndex];
       document.getElementById("hud-stage").textContent =
-        "Stage " + (game.stageIndex + 1) + "/" + city.stages.length + " — " + st.factor;
+        "Stage " + (game.stageIndex + 1) + "/" + city.stages.length + " - " + st.factor;
       document.getElementById("hud-check").textContent = game.checkpointsEnabled
         ? "Checkpoints on" : "Hardcore city run";
     }
@@ -317,7 +362,7 @@
   }
 
   function startHubPlay(cityIndex, stageIndex) {
-    // hubs are always accessible — no stage-lock check here
+    // hubs are always accessible - no stage-lock check here
     currentCityIndex = cityIndex;
     const si = stageIndex == null ? selectedStageIndex : stageIndex;
     resize();
@@ -343,15 +388,20 @@
 
     const el = document.getElementById("win-summary");
     el.textContent =
-      st.factor + " (" + st.score + ") — strengths: " + st.strengths +
+      st.factor + " (" + st.score + ") - strengths: " + st.strengths +
       " · pressure: " + st.weaknesses;
 
-    // Show/hide "Next stage" button based on lock
+    // "Next stage" button - if the hub for this stage hasn't been completed yet,
+    // redirect the player to the hub instead (hub completion unlocks the next stage).
     const btnNext = document.getElementById("btn-next-stage");
     const nextSi = si + 1;
     const hasNext = nextSi < city.stages.length;
     if (hasNext) {
-      btnNext.textContent = "Next stage →";
+      if (!isHubComplete(city.id, si)) {
+        btnNext.textContent = "Enter rest hub (required for next stage)";
+      } else {
+        btnNext.textContent = "Next stage ->";
+      }
       btnNext.style.display = "";
     } else {
       btnNext.textContent = "City complete!";
@@ -417,10 +467,15 @@
   document.getElementById("btn-next-stage").addEventListener("click", function () {
     hide(screens.win);
     const city = G.cities[game.cityIndex];
-    const next = game.stageIndex + 1;
+    const si   = game.stageIndex;
+    const next = si + 1;
     if (next < city.stages.length) {
-      // Stage was just beaten so next is now unlocked
-      startPlay(game.cityIndex, next, { resetSpawn: false });
+      if (!isHubComplete(city.id, si)) {
+        // Hub not yet done - send player to hub so they can earn the unlock.
+        startHubPlay(game.cityIndex, si);
+      } else {
+        startPlay(game.cityIndex, next, { resetSpawn: false });
+      }
     } else {
       populateCities();
       showScreen("cities");
@@ -572,6 +627,8 @@
         openHubReadout(ev.title, ev.text, ev.valence);
       }
       if (ev && ev.type === "hub_exit") {
+        // Player reached the hub exit - mark the hub complete before returning.
+        markHubComplete(G.cities[game.cityIndex].id, game.hubStageIndex);
         exitHubToCity();
       }
     }

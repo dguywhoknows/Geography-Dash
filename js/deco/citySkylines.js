@@ -1,5 +1,5 @@
-/**
- * Per-city cinematic backdrops — deeply layered parallax skylines.
+﻿/**
+ * Per-city cinematic backdrops - deeply layered parallax skylines.
  * Every city has 5-7 distinct rendering layers. Every hazardTheme
  * triggers its own visual treatment: sky palette, landmark emphasis,
  * animated props, and atmospheric effects.
@@ -437,7 +437,7 @@
     const theme = stage ? stage.hazardTheme : null;
     const acc = city.accent || "#6ec8ff";
 
-    // ── SKY — full per-theme palette ─────────────────────────────────────────
+    // ── SKY - full per-theme palette ─────────────────────────────────────────
     const sky =
       (theme==="arts"||theme==="stage_hazard") ? ["#06001a","#1a0040","#4a007a","#a03000"] :
       (theme==="housing"||theme==="quake_crack") ? ["#1a2230","#304050","#607080"] :
@@ -538,7 +538,7 @@
     }
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 1 — FAR DISTANCE: Swedish coast silhouette + open sea
+    //  LAYER 1 - FAR DISTANCE: Swedish coast silhouette + open sea
     // ══════════════════════════════════════════════════════════════════════════
     const seaCol = (theme==="flood_zone")?"rgba(4,12,38,0.65)":(theme==="smog_cloud")?"rgba(55,55,45,0.35)":"rgba(120,168,205,0.28)";
     P.hillSilhouette(ctx, D.parallaxX(-600,cam,0.018), D.parallaxX(w+1400,cam,0.018), gy+62, 22, seaCol, 3);
@@ -552,7 +552,7 @@
     ctx.fillRect(D.parallaxX(-400,cam,0.018), seaY - 10, w + 1200, 40);
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 2 — FAR BUILDINGS: distant Copenhagen outer-city rooflines
+    //  LAYER 2 - FAR BUILDINGS: distant Copenhagen outer-city rooflines
     // ══════════════════════════════════════════════════════════════════════════
     const farPar = 0.052;
     const farBldgs = [
@@ -586,7 +586,7 @@
     });
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 3 — MID-FAR: mixed Copenhagen facades with windows + roofs
+    //  LAYER 3 - MID-FAR: mixed Copenhagen facades with windows + roofs
     // ══════════════════════════════════════════════════════════════════════════
     const mfPar = 0.095;
     const mfBldgs = [
@@ -625,11 +625,11 @@
     });
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 4 — MID: Vor Frelsers Kirke spiral spire + Christiansborg Palace
+    //  LAYER 4 - MID: Vor Frelsers Kirke spiral spire + Christiansborg Palace
     // ══════════════════════════════════════════════════════════════════════════
     const midPar = 0.16;
 
-    // Vor Frelsers Kirke — corkscrew spire church
+    // Vor Frelsers Kirke - corkscrew spire church
     const spireX = D.parallaxX(490, cam, midPar);
     if (spireX > -80 && spireX < w + 80) {
       // Church nave
@@ -718,7 +718,7 @@
     });
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 5 — CANAL WATER with reflections
+    //  LAYER 5 - CANAL WATER with reflections
     // ══════════════════════════════════════════════════════════════════════════
     const canalPar = 0.22;
     const canalY   = gy + 28;
@@ -736,7 +736,7 @@
     ctx.restore();
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 6 — NYHAVN CANAL HOUSES (6 individual hand-drawn buildings)
+    //  LAYER 6 - NYHAVN CANAL HOUSES (6 individual hand-drawn buildings)
     // ══════════════════════════════════════════════════════════════════════════
     const nhPar = 0.268;
     const nhData = [
@@ -767,7 +767,7 @@
       const flH = Math.floor(b.h/b.floors);
       ctx.fillStyle="rgba(255,255,255,0.10)";
       for (let fl=1; fl<b.floors; fl++) ctx.fillRect(nx, ny-fl*flH, b.w, 2);
-      // Windows — 2 per floor with shutters
+      // Windows - 2 per floor with shutters
       for (let fl=0; fl<b.floors; fl++) {
         const wy2 = ny - (fl+1)*flH + 6;
         for (let wc=0; wc<2; wc++) {
@@ -837,7 +837,7 @@
     });
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 7 — WIND TURBINES (scale with env theme)
+    //  LAYER 7 - WIND TURBINES (scale with env theme)
     // ══════════════════════════════════════════════════════════════════════════
     const turbN = (theme==="wind_turbine"||theme==="env") ? 6 : (theme==="smog_cloud"||theme==="housing") ? 0 : 2;
     const turbDefs = [
@@ -852,7 +852,7 @@
     }
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 8 — COBBLESTONE ROAD + BIKE LANE
+    //  LAYER 8 - COBBLESTONE ROAD + BIKE LANE
     // ══════════════════════════════════════════════════════════════════════════
     const rPar = 0.30;
     const rX0  = D.parallaxX(-250, cam, rPar);
@@ -885,7 +885,7 @@
     }
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 9 — STREET FURNITURE (lamps, trees, benches, hydrants)
+    //  LAYER 9 - STREET FURNITURE (lamps, trees, benches, hydrants)
     // ══════════════════════════════════════════════════════════════════════════
     const fPar = 0.291;
     const lampPos = [65,285,505,725,945,1165,1385,1605];
@@ -899,7 +899,7 @@
     });
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  LAYER 10 — TRANSIT + CYCLING + PEDESTRIANS
+    //  LAYER 10 - TRANSIT + CYCLING + PEDESTRIANS
     // ══════════════════════════════════════════════════════════════════════════
     // Red Copenhagen bus (always present, moving left to right)
     const busOff = (t * 0.020) % (w + 240);
@@ -910,7 +910,7 @@
       ctx.fillText("5C Husum", busX+14, gy-22); ctx.textAlign="left";
     }
 
-    // Cyclists — Copenhagen has more cyclists than cars
+    // Cyclists - Copenhagen has more cyclists than cars
     const cPar = 0.293;
     const numCyc = (theme==="bike_lane"||theme==="mobility") ? 14 : 5;
     for (let ci=0; ci<numCyc; ci++) {
@@ -920,7 +920,7 @@
       bicycle(ctx, bkX, gy, ci%4===2?-1:1, t+ci*0.85);
     }
 
-    // Pedestrians — 8 people with varied outfits
+    // Pedestrians - 8 people with varied outfits
     const pedCols=["rgba(48,68,98,0.68)","rgba(78,58,88,0.68)","rgba(38,78,58,0.68)",
                    "rgba(88,68,48,0.68)","rgba(58,78,88,0.68)","rgba(68,48,68,0.68)",
                    "rgba(38,58,78,0.68)","rgba(88,58,58,0.68)"];
@@ -942,7 +942,7 @@
     // ══════════════════════════════════════════════════════════════════════════
 
     if (theme==="arts"||theme==="stage_hazard") {
-      // TIVOLI GARDENS NIGHT — spotbeams, Ferris wheel, lantern strings, marquee
+      // TIVOLI GARDENS NIGHT - spotbeams, Ferris wheel, lantern strings, marquee
       const artC=["#e74c3c","#3498db","#2ecc71","#f39c12","#9b59b6","#e91e63","#1abc9c","#ff5722"];
       for (let i=0;i<8;i++) spotBeam(ctx,50+i*185,cam,w,gy,t,i*0.82,artC[i%artC.length]);
       // Lantern strings between buildings
@@ -1002,7 +1002,7 @@
       });
 
     } else if (theme==="env"||theme==="wind_turbine") {
-      // CLEAN ENVIRONMENT — sailboats, EV station, solar panels, extra birds
+      // CLEAN ENVIRONMENT - sailboats, EV station, solar panels, extra birds
       A.paintBirds(ctx,cam,w,gy,t+6,[{x:0.28,y:0.30,n:14},{x:0.68,y:0.14,n:9}]);
       // Sailboat on Nyhavn canal
       const slX=D.parallaxX(720,cam,0.215);
@@ -1037,7 +1037,7 @@
       }
 
     } else if (theme==="bike_lane"||theme==="mobility") {
-      // CYCLING CITY — counter, bike rack, cargo bikes, green corridor
+      // CYCLING CITY - counter, bike rack, cargo bikes, green corridor
       const ccX=D.parallaxX(660,cam,0.285);
       if (ccX>-45&&ccX<w+45) {
         ctx.fillStyle="#1a5a28"; rrp(ctx,ccX-38,gy-94,76,32,5); ctx.fill();
@@ -1059,7 +1059,7 @@
       }
 
     } else if (theme==="housing"||theme==="quake_crack") {
-      // CONSTRUCTION — three cranes, scaffolding, dust, orange fence
+      // CONSTRUCTION - three cranes, scaffolding, dust, orange fence
       crane(ctx,260,cam,w,gy,0.21,1.0);
       crane(ctx,760,cam,w,gy,0.245,0.88);
       crane(ctx,1240,cam,w,gy,0.19,0.96);
@@ -1085,7 +1085,7 @@
       P.smogHaze(ctx,D.parallaxX(-120,cam,0.11),gy-140,w+540,0.13,[108,102,92]);
 
     } else if (theme==="flood_zone") {
-      // FLOODED STREETS — dark water, sandbags, emergency signs
+      // FLOODED STREETS - dark water, sandbags, emergency signs
       ctx.fillStyle="rgba(8,24,76,0.52)";
       ctx.fillRect(D.parallaxX(-250,cam,0.295),gy-22,w+900,24);
       // Water ripples over road
@@ -1114,7 +1114,7 @@
       }
 
     } else if (theme==="smog_cloud") {
-      // HEAVY SMOG — three haze bands + pollution meter
+      // HEAVY SMOG - three haze bands + pollution meter
       P.smogHaze(ctx,D.parallaxX(-120,cam,0.065),gy-205,w+520,0.24,[78,82,68]);
       P.smogHaze(ctx,D.parallaxX(-120,cam,0.105),gy-145,w+520,0.30,[90,86,72]);
       P.smogHaze(ctx,D.parallaxX(-120,cam,0.155),gy-85,w+520,0.20,[102,96,80]);
@@ -1126,7 +1126,7 @@
       }
 
     } else if (theme==="car_swarm"||theme==="commute_pulse") {
-      // TRAFFIC JAM — many cars, traffic light
+      // TRAFFIC JAM - many cars, traffic light
       const carC=["#c0392b","#2980b9","#f39c12","#7f8c8d","#27ae60","#8e44ad","#e74c3c"];
       for(let ci=0;ci<12;ci++){
         const caX=D.parallaxX(25+ci*130,cam,0.295);
@@ -1146,7 +1146,7 @@
       }
 
     } else if (theme==="patrol_soft"||theme==="patrol_hard") {
-      // POLICE — police car with lights, officer silhouettes
+      // POLICE - police car with lights, officer silhouettes
       const pcX=D.parallaxX(490,cam,0.294);
       if(pcX>-65&&pcX<w+65){
         smallCar(ctx,pcX,gy,1,"#f0f0f2");
@@ -1162,7 +1162,7 @@
       }
 
     } else if (theme==="health"||theme==="pulse_zone") {
-      // HEALTH — hospital H sign, ambulance
+      // HEALTH - hospital H sign, ambulance
       const hcX=D.parallaxX(680,cam,0.215);
       if(hcX>-65&&hcX<w+65){
         ctx.fillStyle="#1a5ea0"; rrp(ctx,hcX-28,gy-192,56,42,6); ctx.fill();
@@ -1180,7 +1180,7 @@
       }
 
     } else if (theme==="civic"||theme==="ballot_wave") {
-      // CIVIC — town hall clock tower, vote banners, flags
+      // CIVIC - town hall clock tower, vote banners, flags
       const thX=D.parallaxX(580,cam,0.185);
       if(thX>-90&&thX<w+90){
         ctx.fillStyle="#b0a880"; ctx.fillRect(thX-32,gy-165,64,165);
@@ -1208,7 +1208,7 @@
       }
 
     } else if (theme==="learning"||theme==="book_stack") {
-      // UNIVERSITY — columned entrance, floating books
+      // UNIVERSITY - columned entrance, floating books
       const univX=D.parallaxX(680,cam,0.195);
       if(univX>-90&&univX<w+90){
         ctx.fillStyle="#e0d8c8"; ctx.fillRect(univX-55,gy-148,110,148);
@@ -1250,7 +1250,7 @@
       }
 
     } else if (theme==="income"||theme==="tax_slider") {
-      // WEALTH THEME — luxury car, money symbols
+      // WEALTH THEME - luxury car, money symbols
       const lcX=D.parallaxX(580,cam,0.295);
       if(lcX>-65&&lcX<w+65){
         ctx.fillStyle="#1a1f2a"; rrp(ctx,lcX,gy-22,62,22,5); ctx.fill();
@@ -1347,7 +1347,7 @@
       ctx.restore();
     }
 
-    // ── CN TOWER — detailed with observation deck ring and pod ─────────────────
+    // ── CN TOWER - detailed with observation deck ring and pod ─────────────────
     const cnx = D.parallaxX(w*0.62+160, cam, 0.14);
     if (D.visible(cnx, 80, cam, w)) {
       B.landmarkCnTower(ctx, cnx, gy+8, 1.08);
@@ -1377,7 +1377,7 @@
       }
     }
 
-    // ── TORONTO CITY HALL — curved twin towers silhouette ─────────────────────
+    // ── TORONTO CITY HALL - curved twin towers silhouette ─────────────────────
     const chx = D.parallaxX(w*0.32, cam, 0.16);
     if (D.visible(chx, 100, cam, w) && (theme==="civic"||theme==="ballot_wave"||theme==="sector"||theme==="institution_gate"||!theme)) {
       // East tower (taller, curved)
@@ -1445,7 +1445,7 @@
       ctx.beginPath(); ctx.moveTo(ddx,gy-36); ctx.lineTo(ddx-6,gy-28); ctx.lineTo(ddx+6,gy-28); ctx.closePath(); ctx.fill();
     }
 
-    // ── GARDINER EXPRESSWAY — elevated grey concrete deck ─────────────────────
+    // ── GARDINER EXPRESSWAY - elevated grey concrete deck ─────────────────────
     const gex = D.parallaxX(-80, cam, 0.20);
     {
       ctx.fillStyle="#8090a0";
@@ -1741,7 +1741,7 @@
     B.row(ctx, -200, w+900, gy+28, cam, 0.06, 414, ["colonial","brick","mosque"], 38, 95, t);
     B.row(ctx, -200, w+900, gy+10, cam, 0.12, 616, ["brick","artdeco","mosque"],  62,145, t);
 
-    // ── HAGIA SOPHIA — main dome + semi-domes + four minarets ─────────────────
+    // ── HAGIA SOPHIA - main dome + semi-domes + four minarets ─────────────────
     const hsx = D.parallaxX(w*0.55+100, cam, 0.14);
     if (D.visible(hsx, 160, cam, w)) {
       // Base / walls (warm sandstone)
@@ -1786,7 +1786,7 @@
       }
     }
 
-    // ── GALATA TOWER — cylindrical medieval tower ─────────────────────────────
+    // ── GALATA TOWER - cylindrical medieval tower ─────────────────────────────
     const gtx = D.parallaxX(w*0.30, cam, 0.17);
     if (D.visible(gtx, 50, cam, w)) {
       const towerH=96;
@@ -1817,7 +1817,7 @@
       }
     }
 
-    // ── BOSPHORUS — deep blue water with shipping ─────────────────────────────
+    // ── BOSPHORUS - deep blue water with shipping ─────────────────────────────
     P.canalWater(ctx, D.parallaxX(-130,cam,0.10), D.parallaxX(w+530,cam,0.10), gy+42, t, {
       top: theme==="flood_zone" ? "rgba(10,28,68,0.70)" : "rgba(62,108,148,0.55)",
       bot: theme==="flood_zone" ? "rgba(3,10,28,0.96)"  : "rgba(24,52,82,0.88)",
@@ -2076,7 +2076,7 @@
     B.row(ctx,-200,w+950,gy+24,cam,0.07,717,["tropical","temple","highrise"],44,105,t);
     B.row(ctx,-200,w+950,gy+6, cam,0.14,818,["tropical","highrise","artdeco"],62,172,t);
 
-    // ── WAT PHO GILDED CHEDI — the main gold spire ────────────────────────────
+    // ── WAT PHO GILDED CHEDI - the main gold spire ────────────────────────────
     const wpx = D.parallaxX(w*0.58+80, cam, 0.15);
     if (D.visible(wpx, 80, cam, w)) {
       // Base mandapa (low hall)
@@ -2426,7 +2426,7 @@
     B.row(ctx,-200,w+1050,gy+18,cam,0.11,424,["brick","shanty","warehouse"],  52,132,t);
     B.row(ctx,-200,w+1050,gy,    cam,0.17,929,["brick","highrise","shanty"],  72,192,t);
 
-    // ── RED FORT — Mughal sandstone ramparts ──────────────────────────────────
+    // ── RED FORT - Mughal sandstone ramparts ──────────────────────────────────
     const rfx = D.parallaxX(w*0.60+60, cam, 0.13);
     if (D.visible(rfx, 180, cam, w)) {
       // Main rampart wall
@@ -2456,7 +2456,7 @@
       ctx.beginPath(); ctx.arc(rfx+88,gy-94,5,0,Math.PI*2); ctx.fill();
     }
 
-    // ── QUTUB MINAR — tapering round sandstone tower ─────────────────────────
+    // ── QUTUB MINAR - tapering round sandstone tower ─────────────────────────
     const qmx = D.parallaxX(w*0.28, cam, 0.17);
     if (D.visible(qmx, 50, cam, w)) {
       // Tower (5 storeys, tapers)
@@ -2812,12 +2812,12 @@
       theme==="boss_lagos"                     ? [{par:0.05,y:50,density:9,alpha:0.58}] :
       SKY.lagos.clouds);
 
-    // ── FAR SILHOUETTES — Victoria Island / Ikoyi skyline ─────────────────
+    // ── FAR SILHOUETTES - Victoria Island / Ikoyi skyline ─────────────────
     B.row(ctx, -200, w+1020, gy+30, cam, 0.05, 232, ["shanty","warehouse","brick"],  28,  72, t);
     B.row(ctx, -200, w+1020, gy+12, cam, 0.09, 535, ["shanty","brick","highrise"],   44, 120, t);
     B.row(ctx, -200, w+1020, gy-2,  cam, 0.14, 838, ["highrise","glass","brick"],     58, 162, t);
 
-    // ── THIRD MAINLAND BRIDGE — iconic silhouette across the lagoon ───────
+    // ── THIRD MAINLAND BRIDGE - iconic silhouette across the lagoon ───────
     {
       const bmx = D.parallaxX(-80, cam, 0.06);
       ctx.save(); ctx.globalAlpha=0.26;
@@ -2836,7 +2836,7 @@
       ctx.restore();
     }
 
-    // ── EKO ATLANTIC — half-built luxury towers on reclaimed land ─────────
+    // ── EKO ATLANTIC - half-built luxury towers on reclaimed land ─────────
     {
       const eax = D.parallaxX(w*0.80, cam, 0.11);
       if (D.visible(eax, 80, cam, w)) {
@@ -2914,7 +2914,7 @@
       }
     }
 
-    // ── LAGOS LAGOON — brackish green-brown water ─────────────────────────
+    // ── LAGOS LAGOON - brackish green-brown water ─────────────────────────
     P.canalWater(ctx,
       D.parallaxX(-130,cam,0.09), D.parallaxX(w+520,cam,0.09),
       gy+34, t, {
@@ -2933,7 +2933,7 @@
     }
 
     // ── STREET LEVEL ──────────────────────────────────────────────────────
-    // Lamp posts (some broken — power cut theme)
+    // Lamp posts (some broken - power cut theme)
     for (let li=0; li<5; li++) {
       const lfx=D.parallaxX(80+li*300, cam, 0.27);
       if (!D.visible(lfx, 30, cam, w)) continue;
@@ -2941,7 +2941,7 @@
       lampPost(ctx, lfx, gy, broken?"rgba(0,0,0,0)":"rgba(255,190,58,0.36)", t);
     }
 
-    // Danfo buses — iconic yellow Lagos minibus with black stripe
+    // Danfo buses - iconic yellow Lagos minibus with black stripe
     for (let di=0; di<3; di++) {
       const dfx=D.parallaxX(130+di*530, cam, 0.28);
       if (!D.visible(dfx, 56, cam, w)) continue;
@@ -2965,7 +2965,7 @@
       }
     }
 
-    // Okada motorcycle taxis (yellow vests — high crash risk)
+    // Okada motorcycle taxis (yellow vests - high crash risk)
     for (let oi=0; oi<4; oi++) {
       const ofx=D.parallaxX(240+oi*360, cam, 0.28);
       if (!D.visible(ofx, 28, cam, w)) continue;
@@ -2978,7 +2978,7 @@
       ctx.beginPath(); ctx.arc(ofx+22,gy,5,0,Math.PI*2); ctx.fill();
     }
 
-    // Pedestrians (6 — busy streets)
+    // Pedestrians (6 - busy streets)
     for (let pi=0; pi<6; pi++) {
       const pfx=D.parallaxX(100+pi*270, cam, 0.29);
       if (D.visible(pfx, 18, cam, w))
@@ -2992,7 +2992,7 @@
 
     // ── THEME OVERLAYS ─────────────────────────────────────────────────────
     if (theme==="stage_hazard"||theme==="arts") {
-      // ── ARTS: Afrobeats/Nollywood — concert rigs, neon, spotbeams ──────
+      // ── ARTS: Afrobeats/Nollywood - concert rigs, neon, spotbeams ──────
       const alc=["#f39c12","#e74c3c","#2ecc71","#9b59b6","#e91e63","#1abc9c","#ff5722"];
       for (let ai=0; ai<14; ai++) lanternDot(ctx,42+ai*166,gy-82-(ai%5)*20,cam,w,t,ai*0.70,alc[ai%alc.length]);
       for (let ai=0; ai<5; ai++) spotBeam(ctx,70+ai*230,cam,w,gy,t,ai*1.35,["#f39c12","#e74c3c","#2ecc71","#9b59b6","#ff5722"][ai]);
@@ -3079,7 +3079,7 @@
           ctx.restore();
         }
       }
-      // #ENDSARS banner (green — Nigerian flag colour)
+      // #ENDSARS banner (green - Nigerian flag colour)
       const esxc=D.parallaxX(490, cam, 0.22);
       if (D.visible(esxc, 124, cam, w)) {
         ctx.fillStyle="#1a3a1a"; ctx.fillRect(esxc-60,gy-82,120,34);
@@ -3132,7 +3132,7 @@
         ctx.fillStyle="#f39c12"; ctx.font="6px monospace";
         ctx.fillText("FAIL COMPETENCY TEST",ltsxc,gy-44); ctx.textAlign="left";
       }
-      // Falling books (decorative — represents book shortage)
+      // Falling books (decorative - represents book shortage)
       for (let lbi=0; lbi<6; lbi++) {
         const lby=((t*0.55+lbi*26)%(gy+55))-20;
         const lbx=D.parallaxX(380+lbi*190, cam, 0.22);
@@ -3144,7 +3144,7 @@
       }
 
     } else if (theme==="tax_slider"||theme==="income") {
-      // ── INCOME: Extreme gap — Lekki mansion vs Ajegunle shacks ─────────
+      // ── INCOME: Extreme gap - Lekki mansion vs Ajegunle shacks ─────────
       // Lekki Phase 1 mansion
       const lmx=D.parallaxX(w*0.67, cam, 0.17);
       if (D.visible(lmx, 88, cam, w)) {
@@ -3397,12 +3397,12 @@
           smallCar(ctx,bgcx,gy,bgi%2?1:-1,["#c0392b","#2980b9","#7f8c8d"][bgi%3]);
         }
       }
-      // "APAPA — ALL BLOCKED" highway sign
+      // "APAPA - ALL BLOCKED" highway sign
       const apax=D.parallaxX(w*0.5, cam, 0.22);
       if (D.visible(apax, 128, cam, w)) {
         ctx.fillStyle="#c0392b"; ctx.fillRect(apax-62,gy-82,124,32);
         ctx.fillStyle="#fff"; ctx.font="bold 9px monospace"; ctx.textAlign="center";
-        ctx.fillText("APAPA — ALL BLOCKED",apax,gy-64);
+        ctx.fillText("APAPA - ALL BLOCKED",apax,gy-64);
         ctx.fillStyle="#ff8800"; ctx.font="6px monospace";
         ctx.fillText("WAIT TIME: UNKNOWN",apax,gy-50); ctx.textAlign="left";
       }

@@ -1,5 +1,5 @@
-/**
- * Geography Dash — decoration engine core (RNG, color, parallax, culling).
+﻿/**
+ * Geography Dash - decoration engine core (RNG, color, parallax, culling).
  */
 (function () {
   "use strict";

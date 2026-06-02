@@ -1,5 +1,5 @@
-/**
- * Procedural stage + hub decoration scatter — dense environmental storytelling.
+﻿/**
+ * Procedural stage + hub decoration scatter - dense environmental storytelling.
  */
 (function () {
   "use strict";

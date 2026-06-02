@@ -1,5 +1,5 @@
-/**
- * Rich procedural primitives — clouds, water, foliage, street furniture, vehicles.
+﻿/**
+ * Rich procedural primitives - clouds, water, foliage, street furniture, vehicles.
  */
 (function () {
   "use strict";

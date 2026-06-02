@@ -1,5 +1,5 @@
-/**
- * Hand-authored platform rooms — every room is a thoughtful, playtested slice.
+﻿/**
+ * Hand-authored platform rooms - every room is a thoughtful, playtested slice.
  * PASSABILITY GUARANTEE: every room has an "exit ramp" platform within 80 px of
  * the right edge of the slice (sliceW = 480) so that cross-slice gaps are always
  * jumpable, even when intensity is high and the ground has hazards.
@@ -25,7 +25,7 @@
   const H = 18;
   function R(dx, dy, w, hh) { return { dx, dy, w, h: hh || H }; }
 
-  // ─── TIER 0 — Tutorial / Opening ─────────────────────────────────────────
+  // ─── TIER 0 - Tutorial / Opening ─────────────────────────────────────────
   const TIER0 = [
     function openWalk() {
       return [R(20, -52, 280), R(340, -52, 240)];          // ends at 580 ✓
@@ -44,7 +44,7 @@
     },
   ];
 
-  // ─── TIER 1 — Gentle Challenge ────────────────────────────────────────────
+  // ─── TIER 1 - Gentle Challenge ────────────────────────────────────────────
   const TIER1 = [
     function introRun() {
       return [R(24, -58, 200), R(280, -58, 200), R(160, -120, 150)]; // 480 ✓
@@ -74,7 +74,7 @@
     },
   ];
 
-  // ─── TIER 2 — Moderate Challenge ─────────────────────────────────────────
+  // ─── TIER 2 - Moderate Challenge ─────────────────────────────────────────
   const TIER2 = [
     function zigZag() {
       return [R(40, -70, 130), R(200, -120, 130), R(120, -52, 180),
@@ -113,7 +113,7 @@
     },
   ];
 
-  // ─── TIER 3 — Hard ───────────────────────────────────────────────────────
+  // ─── TIER 3 - Hard ───────────────────────────────────────────────────────
   const TIER3 = [
     function tightZigZag() {
       return [R(20, -65, 100), R(150, -115, 100), R(80, -52, 90),

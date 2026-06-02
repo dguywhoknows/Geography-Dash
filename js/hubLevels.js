@@ -1,9 +1,9 @@
-/**
- * Per-stage rest hub levels — one explorable plaza per campaign stage.
+﻿/**
+ * Per-stage rest hub levels - one explorable plaza per campaign stage.
  * Each hub has a themed platform layout matching the stage topic, with
  * 4 clickable exhibits drawn as kind-specific icons (dollar, house, turbine…).
  *
- * Hub items come from stage.hubItems[] — set by data.js at the bottom.
+ * Hub items come from stage.hubItems[] - set by data.js at the bottom.
  * Each item: { kind, title, body, valence }
  */
 (function () {
@@ -296,7 +296,7 @@
 
     // Hub items → triggers
     const hubItems = (st.hubItems && st.hubItems.length) ? st.hubItems
-      : [{ kind: "stats", title: st.factor + " — rest plaza",
+      : [{ kind: "stats", title: st.factor + " - rest plaza",
            body: st.strengths + " · " + st.weaknesses, valence: "good" }];
     const triggers = placeItems(platforms, hubItems, groundY);
 

@@ -1,5 +1,5 @@
-/**
- * Near-parallax foreground silhouettes — cables, awnings, distant traffic glow.
+﻿/**
+ * Near-parallax foreground silhouettes - cables, awnings, distant traffic glow.
  */
 (function () {
   "use strict";

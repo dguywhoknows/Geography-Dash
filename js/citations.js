@@ -1,5 +1,5 @@
-/**
- * Geography Dash — APA 7 formatted citations, sorted A–Z.
+﻿/**
+ * Geography Dash - APA 7 formatted citations, sorted A–Z.
  * Loaded after data.js; overwrites the placeholder citations array.
  * Format: label = APA text with <em> for titles (no URL); url = source URL.
  * Sort key: organisation name → year → title (same-org, same-year entries).

@@ -1,5 +1,5 @@
-/**
- * Rich platform surface rendering — cobble, marble, gameplay stone, accents.
+﻿/**
+ * Rich platform surface rendering - cobble, marble, gameplay stone, accents.
  */
 (function () {
   "use strict";

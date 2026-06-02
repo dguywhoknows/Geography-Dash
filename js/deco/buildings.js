@@ -1,5 +1,5 @@
-/**
- * Procedural facade system — detailed buildings with roofs, windows, ornaments.
+﻿/**
+ * Procedural facade system - detailed buildings with roofs, windows, ornaments.
  */
 (function () {
   "use strict";

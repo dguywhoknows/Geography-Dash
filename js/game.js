@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   "use strict";
 
   const G = window.GEOGRAPHY_DASH;
@@ -51,7 +51,9 @@
     const stageRamp = Math.min(1, stageIndex / 9);
     // intensity: e.g. Copenhagen S1 = 0.28*0.4 + 0.0 = 0.11  (very easy)
     //            Lagos S9          = 0.95*0.4 + 0.9 = 1.0     (max)
-    const intensity = Math.min(1, d * 0.4 + stageRamp * 0.8 + scorePenalty * 0.2);
+    // Non-boss stages are capped at 0.85 to prevent unbeatable hazard density.
+    const rawIntensity = d * 0.4 + stageRamp * 0.8 + scorePenalty * 0.2;
+    const intensity = Math.min(boss ? 1.0 : 0.85, rawIntensity);
 
     // ── Moving-hazard threshold ───────────────────────────────────────────────
     // Cars/patrols/blocks only appear once intensity is high enough.
@@ -131,7 +133,7 @@
       // ── Fixed safe-edge zone ─────────────────────────────────────────────
       // Keep SAFE_EDGE px clear on BOTH sides of every aerial platform.
       // PLAYER_W = 28 px, so SAFE_EDGE = 55 leaves 27 px of clear space
-      // beyond the player width — enough to land on the left and jump from
+      // beyond the player width - enough to land on the left and jump from
       // the right without any spike being in the way.
       const SAFE_EDGE = 55;
 
@@ -176,7 +178,7 @@
 
       // ── Theme-specific hazards (all spikes via platSpike) ───────────────────
       if ((theme === "car_swarm" || theme === "mobility" || theme === "commute_pulse" || theme === "work") && hzRoll < 0.55) {
-        const spd = (1.8 + intensity * 3.8) * (rnd() < 0.5 ? -1 : 1);
+        const spd = (1.5 + intensity * 2.8) * (rnd() < 0.5 ? -1 : 1);
         pushCar(x + rnd() * Math.max(8, pw - 40), platY - 26, 52, 26, spd);
 
       } else if ((theme === "smog_cloud" || theme === "boss_storm") && hzRoll < 0.48) {
@@ -194,9 +196,13 @@
 
       } else if ((theme === "quake_crack" || theme === "housing") && hzRoll < 0.45) {
         if (theme === "housing" && movingHzOk) {
-          hazards.push({ kind: "bill", x: x + rnd() * Math.max(0, pw - 38),
-            y: platY - 34, w: 38, h: 18,
-            vx: (rnd() < 0.5 ? -1 : 1) * (0.9 + intensity * 1.8), lethal: true });
+          const bw = 38;
+          const bx = x + rnd() * Math.max(0, pw - bw);
+          hazards.push({ kind: "bill", x: bx,
+            y: platY - 34, w: bw, h: 18,
+            vx: (rnd() < 0.5 ? -1 : 1) * (0.9 + intensity * 1.8),
+            minX: x, maxX: x + pw - bw,
+            lethal: true });
         } else {
           platSpike(x + rnd() * Math.max(0, pw - 18), platY - 12, 22, 14);
         }
@@ -237,9 +243,13 @@
 
       } else if ((theme === "tax_slider" || theme === "income") && hzRoll < 0.45) {
         if (movingHzOk) {
-          hazards.push({ kind: "block", x: x + rnd() * Math.max(0, pw - 36),
-            y: platY - 34, w: 34, h: 16,
-            vx: (rnd() < 0.5 ? -1 : 1) * (0.8 + intensity * 2.0), lethal: true });
+          const bw = 34;
+          const bx = x + rnd() * Math.max(0, pw - bw);
+          hazards.push({ kind: "block", x: bx,
+            y: platY - 34, w: bw, h: 16,
+            vx: (rnd() < 0.5 ? -1 : 1) * (0.8 + intensity * 2.0),
+            minX: x, maxX: x + pw - bw,
+            lethal: true });
         }
         if (intensity > 0.45 && rnd() < 0.3) platSpike(x + rnd() * pw * 0.4, platY - 14, 18, 14);
 
@@ -275,13 +285,13 @@
         // Housing bosses: flying rent/price-tag bills are the primary hazard
         hazards.push({ kind: "bill", x: x + rnd() * Math.max(0, pw - 40),
           y: platY - 34, w: 40, h: 20,
-          vx: (rnd() < 0.5 ? -1 : 1) * (2.0 + d * 2.5), lethal: true });
+          vx: (rnd() < 0.5 ? -1 : 1) * (1.6 + d * 1.8), lethal: true });
         if (rnd() < 0.55) {
-          pushCar(x + rnd() * pw, platY - 26, 54, 28, (rnd() < 0.5 ? -1 : 1) * (3.0 + d * 3.0));
+          pushCar(x + rnd() * pw, platY - 26, 54, 28, (rnd() < 0.5 ? -1 : 1) * (2.2 + d * 2.2));
         }
 
       } else if (theme === "boss_volatile" || theme === "boss_lagos") {
-        pushCar(x, platY - 28, 56, 28, 3.4 + d * 3.0);
+        pushCar(x, platY - 28, 56, 28, 2.4 + d * 2.0);
         if (hzRoll < 0.42) {
           hazards.push({ kind: "patrol", x: x + pw * 0.5, y: platY - 36,
             baseY: platY - 36, w: 28, h: 28, t0: 0, amp: 75, speed: 0.038, lethal: true });
@@ -290,16 +300,20 @@
       } else if (hzRoll < 0.50) {
         platSpike(x + pw * 0.2 + rnd() * pw * 0.6, platY - 12, 20, 14);
         if (intensity > 0.5 && rnd() < 0.28 && theme !== "patrol_soft" && movingHzOk) {
-          hazards.push({ kind: "block", x: x + rnd() * Math.max(0, pw - 36),
-            y: platY - 32, w: 34, h: 15,
-            vx: (rnd() < 0.5 ? -1 : 1) * (0.9 + intensity * 1.8), lethal: true });
+          const bw2 = 34;
+          const bx2 = x + rnd() * Math.max(0, pw - bw2);
+          hazards.push({ kind: "block", x: bx2,
+            y: platY - 32, w: bw2, h: 15,
+            vx: (rnd() < 0.5 ? -1 : 1) * (0.9 + intensity * 1.8),
+            minX: x, maxX: x + pw - bw2,
+            lethal: true });
         }
       }
     }
 
     // ── Car-lane sweep for vehicle-themed stages ──────────────────────────────
     if (movingHzOk && (theme === "car_swarm" || theme === "boss_sprawl" || theme === "boss_lagos")) {
-      const laneCount = boss ? 3 + Math.floor(d) : 1 + Math.floor(intensity * 2);
+      const laneCount = boss ? 3 + Math.floor(d) : Math.min(2, 1 + Math.floor(intensity * 2));
       const laneSpacing = Math.max(200, (width - 400) / Math.max(1, laneCount));
       for (let li = 0; li < laneCount; li++) {
         const laneX = 400 + li * laneSpacing;
@@ -315,13 +329,15 @@
 
     // ── Boss gauntlet gates ───────────────────────────────────────────────────
     if (boss && (theme === "boss_tower" || theme === "boss_volatile" || theme === "boss_storm")) {
-      for (let gi = 0; gi < 3; gi++) {
-        const gx = 420 + gi * 880;
+      // Two gauntlet gates (was three) with slower open/close cycles.
+      for (let gi = 0; gi < 2; gi++) {
+        const gx = 420 + gi * 1400;
         hazards.push({ kind: "gate", x: gx, y: groundY - 88, w: 20, h: 88,
-          t0: gi * 18, period: 85 + gi * 18, lethal: true });
+          t0: gi * 18, period: 110 + gi * 20, lethal: true });
         if (theme === "boss_storm") {
-          hazards.push({ kind: "cloud", x: gx + 60, y: groundY - 135, w: 84, h: 38,
-            vx: 0.7 + d * 0.5, drift: gi * 0.018, lethal: true });
+          // Cloud placed well away from the gate and higher to avoid impossible overlap.
+          hazards.push({ kind: "cloud", x: gx + 280, y: groundY - 155, w: 72, h: 34,
+            vx: 0.5 + d * 0.3, drift: gi * 0.018, lethal: true });
         }
       }
     }
@@ -642,7 +658,11 @@
       if (z.y > this.level.groundY + 40) z.y = -200;
     } else if (z.kind === "block" || z.kind === "bill") {
       z.x += z.vx * dt * 60;
-      if (z.x < this.cameraX - 100 || z.x > this.cameraX + 1200) z.vx *= -1;
+      // Tethered hazards (blocks, housing bills) bounce within their platform.
+      // Boss bills have no minX/maxX and use the wider camera-relative range.
+      const bLo = z.minX != null ? z.minX : (this.cameraX - 100);
+      const bHi = z.maxX != null ? z.maxX : (this.cameraX + 1200);
+      if (z.x < bLo || z.x > bHi) { z.vx *= -1; z.x = Math.max(bLo, Math.min(bHi, z.x)); }
     } else if (z.kind === "book") {
       z.y += z.vy * dt * 60;
       if (z.y > this.level.groundY + 40) z.y = -180;
@@ -682,7 +702,7 @@
     }
     if (z.kind === "gate") {
       const open = z._open != null ? z._open : 0.5;
-      if (open > 0.72) return false;
+      if (open > 0.55) return false;   // open ~47% of cycle (was 0.72 = 35%)
       return aabbOverlap(p.x, p.y, PLAYER_W, PLAYER_H, z.x, z.y, z.w, z.h);
     }
     return false;
@@ -848,7 +868,7 @@
 
     const p = this.player;
     if (Deco && Deco.drawPlayer) {
-      // Detailed procedural player from deco/player.js — always preferred
+      // Detailed procedural player from deco/player.js - always preferred
       Deco.drawPlayer(ctx, p, this.time, city);
     } else if (Spr && Spr.player) {
       Spr.player(ctx, p.x, p.y, p.facing);

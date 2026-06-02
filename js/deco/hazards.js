@@ -1,5 +1,5 @@
-/**
- * Detailed hazard visuals — purpose-drawn per kind, city-tinted where relevant.
+﻿/**
+ * Detailed hazard visuals - purpose-drawn per kind, city-tinted where relevant.
  * Exposes GD_DECO.drawHazard(ctx, hazard, time, city).
  */
 (function () {
@@ -277,7 +277,7 @@
     const arm   = z.w * 0.44;
     const pulse = 0.22 + 0.11 * Math.sin(t * 6.2);
 
-    // Ambient glow — red for hard, purple for soft
+    // Ambient glow - red for hard, purple for soft
     const glowCol = hard ? "rgba(192,57,43," : "rgba(155,89,182,";
     const glowG = ctx.createRadialGradient(cx, cy, 0, cx, cy, z.w * 0.8);
     glowG.addColorStop(0, glowCol + (pulse + 0.08) + ")");
@@ -307,7 +307,7 @@
       }
     }
 
-    // Body — hexagonal for soft, angular octagon for hard
+    // Body - hexagonal for soft, angular octagon for hard
     ctx.fillStyle = hard ? "#8b0000" : "#8e44ad";
     ctx.beginPath();
     const sides = hard ? 8 : 6;
@@ -332,7 +332,7 @@
       ctx.beginPath(); ctx.arc(cx, cy, bR * 0.72, 0, Math.PI * 2); ctx.stroke();
     }
 
-    // LED eye — always red for hard, blinks for soft
+    // LED eye - always red for hard, blinks for soft
     const blink = hard ? true : Math.sin(t * 9.5) > 0.25;
     ctx.fillStyle = blink ? (hard ? "#ff2020" : "#e74c3c") : "#922b21";
     ctx.beginPath(); ctx.arc(cx, cy, hard ? 5 : 4, 0, Math.PI * 2); ctx.fill();
@@ -418,7 +418,7 @@
     ctx.fillStyle = "rgba(0,0,0,0.08)";
     ctx.fillRect(z.x, z.y + z.h * 0.38, z.w, z.h * 0.07);
 
-    // Currency symbol — city-specific
+    // Currency symbol - city-specific
     const sym = (city && CITY_CURRENCY[city.id]) || "$";
     ctx.fillStyle = "#6d4c0a";
     ctx.font = "bold " + Math.max(9, Math.round(z.h * 0.58)) + "px system-ui,sans-serif";
@@ -432,7 +432,7 @@
   }
 
   // ── RENT / PRICE-TAG BILL ────────────────────────────────────────────────────
-  // Urgent red moving notice — housing cost pressure hazard
+  // Urgent red moving notice - housing cost pressure hazard
   function drawBill(ctx, z, t, city) {
     const cur  = (city && CITY_CURRENCY[city.id]) || "$";
     const speed = Math.abs(z.vx || 0);
@@ -463,14 +463,14 @@
       ctx.fillRect(z.x + i * strW, z.y + z.h - 4, strW, 4);
     }
 
-    // "RENT" overdue label — small but legible
+    // "RENT" overdue label - small but legible
     ctx.fillStyle = "rgba(255,255,255,0.82)";
     ctx.font = "bold 6px system-ui,sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
     ctx.fillText("RENT DUE", z.x + z.w * 0.5, z.y + 3);
 
-    // Large currency symbol — the visual anchor
+    // Large currency symbol - the visual anchor
     const pulse = 1 + 0.06 * Math.sin(t * 4.5);
     ctx.save();
     ctx.translate(z.x + z.w * 0.5, z.y + z.h * 0.52);
@@ -488,7 +488,7 @@
   }
 
   // ── FALLING TEXTBOOK ─────────────────────────────────────────────────────────
-  // Heavy academic hazard — falls from above, clearly not a jump aid
+  // Heavy academic hazard - falls from above, clearly not a jump aid
   function drawBook(ctx, z, t) {
     const rot = Math.sin(t * 1.6 + z.x * 0.009) * 0.13;
     const hw  = z.w * 0.5;
@@ -502,11 +502,11 @@
     ctx.fillStyle = "rgba(0,0,0,0.16)";
     D.fillRoundRect(ctx, -hw + 3, -hh + 3, z.w, z.h, 2);
 
-    // Page block (right/top exposed edges — cream colour)
+    // Page block (right/top exposed edges - cream colour)
     ctx.fillStyle = "#e8dfd2";
     D.fillRoundRect(ctx, -hw + 4, -hh, z.w - 4, z.h, 2);
 
-    // Cover — dark academic navy
+    // Cover - dark academic navy
     const cg = ctx.createLinearGradient(-hw, -hh, -hw, hh);
     cg.addColorStop(0,   "#1b3a6e");
     cg.addColorStop(0.5, "#1f4492");
